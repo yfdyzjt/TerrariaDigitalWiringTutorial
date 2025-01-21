@@ -244,7 +244,7 @@
 
 其中，左边的火把与开关的状态相同，所以可以代替开关的状态，它表示输入；而右边的火把表示输出。观察输入和输出的关系可以发现，输出与输入正好相反，由此实现了非逻辑。
 
-设输入为A，输出为Y，则可以用 $Y = \textrm{\~{}}A$ 来表示非逻辑输入与输出的关系。
+设输入为A，输出为Y，则可以用 $Y = \textrm{\ \~{}\ }A$ 来表示非逻辑输入与输出的关系。
 
 > 现实中常用 $Y = A'$ 来表示非
 
@@ -377,16 +377,16 @@ $Y = ABCDEF$
 
 > 有时同或门也叫异或非门，请注意异或门/同或门与奇/偶校验门的区别
 
-下表中为六种逻辑门的逻辑表达式，与使用 $\cdot$ 表示，或使用 $+$ 表示，非使用 $\textrm{\~{}}$ 表示。
+下表中为六种逻辑门的逻辑表达式，与使用 $\cdot$ 表示，或使用 $+$ 表示，非使用 $\textrm{\ \~{}\ }$ 表示。
 
 | 逻辑门 | 逻辑表达式 |
 | ---  | --- |
 | 与门 | $Y = A \cdot B \cdot C$ |
-| 与非门 | $Y = \textrm{\~{}}(A \cdot B \cdot C)$ |
+| 与非门 | $Y = \textrm{\ \~{}\ }(A \cdot B \cdot C)$ |
 | 或门 | $Y = A + B + C$ |
-| 或非门 | $Y = \textrm{\~{}}(A + B + C)$ |
-| 异或门 | $Y = A \cdot \textrm{\~{}}B \cdot \textrm{\~{}}C + \textrm{\~{}}A \cdot B \cdot \textrm{\~{}}C + \textrm{\~{}}A \cdot \textrm{\~{}}B \cdot C$ |
-| 同或门 | $Y = \textrm{\~{}}(A \cdot \textrm{\~{}}B \cdot \textrm{\~{}}C + \textrm{\~{}}A \cdot B \cdot \textrm{\~{}}C + \textrm{\~{}}A \cdot \textrm{\~{}}B \cdot C)$ |
+| 或非门 | $Y = \textrm{\ \~{}\ }(A + B + C)$ |
+| 异或门 | $Y = A \cdot \textrm{\ \~{}\ }B \cdot \textrm{\ \~{}\ }C + \textrm{\ \~{}\ }A \cdot B \cdot \textrm{\ \~{}\ }C + \textrm{\ \~{}\ }A \cdot \textrm{\ \~{}\ }B \cdot C$ |
+| 同或门 | $Y = \textrm{\ \~{}\ }(A \cdot \textrm{\ \~{}\ }B \cdot \textrm{\ \~{}\ }C + \textrm{\ \~{}\ }A \cdot B \cdot \textrm{\ \~{}\ }C + \textrm{\ \~{}\ }A \cdot \textrm{\ \~{}\ }B \cdot C)$ |
 
 
 #### 1.4.4 普通逻辑门的绝对等价
@@ -401,9 +401,9 @@ $Y = ABCDEF$
 
 首先我们需要知道布尔代数中有两个重要的定律，被称为反演律（摩根定律）：
 
-$\textrm{\~{}}(A \cdot B) = \textrm{\~{}}A + \textrm{\~{}}B$
+$\textrm{\ \~{}\ }(A \cdot B) = \textrm{\ \~{}\ }A + \textrm{\ \~{}\ }B$
 
-$\textrm{\~{}}(A + B) = \textrm{\~{}}A \cdot \textrm{\~{}}B$
+$\textrm{\ \~{}\ }(A + B) = \textrm{\ \~{}\ }A \cdot \textrm{\ \~{}\ }B$
 
 > 关于这两个定律的证明可以画图或者列真值表，对于三项及三项以上仍然是成立的。
 
@@ -411,7 +411,7 @@ $\textrm{\~{}}(A + B) = \textrm{\~{}}A \cdot \textrm{\~{}}B$
 
 首先将或门的逻辑表达式进行两次取反（两次取反结果不变），然后使用反演律将或逻辑转换为与逻辑：
 
-$Y = A + B + C = \textrm{\~{}}(\textrm{\~{}}(A + B + C)) = \textrm{\~{}}(\textrm{\~{}}A \cdot \textrm{\~{}}B \cdot \textrm{\~{}}C)$
+$Y = A + B + C = \textrm{\ \~{}\ \ \~{}\ }(A + B + C) = \textrm{\ \~{}\ }(\textrm{\ \~{}\ }A \cdot \textrm{\ \~{}\ }B \cdot \textrm{\ \~{}\ }C)$
 
 上式表明将与逻辑的输入与输出都取反，得到的就是或逻辑。使用线非我们也能对输入（逻辑灯）取反，所以我们可以用与门来代替或门，这样我们就将剩下的三种逻辑门减少到了与门和异或门两种逻辑门。
 
