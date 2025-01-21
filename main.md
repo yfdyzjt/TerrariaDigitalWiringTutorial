@@ -21,10 +21,10 @@
 
 <!-- pagebreak -->
 
-<!-- @import "chapter_0/chapter_0.md" -->
+<!-- @import "chapters/ch_0.md" -->
 
 <!-- pagebreak -->
 
-<!-- @import "chapter_1/chapter_1.md" -->
+<!-- @import "chapters/ch_1.md" -->
 
 <!-- pagebreak -->
