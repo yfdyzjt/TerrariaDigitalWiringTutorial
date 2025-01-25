@@ -18,24 +18,24 @@
 
 在开始之前，建议安装以下模组，以帮助你更方便地进行电路制作：
 
-* [TEdit](https://github.com/TEdit/Terraria-Map-Editor/releases "TEdit")（泰拉瑞亚地图编辑器）
+* [TEdit](https://github.com/TEdit/Terraria-Map-Editor/releases)（泰拉瑞亚地图编辑器）
 
-* [tModLoader](https://store.steampowered.com/app/1281930/ "tModLoader")（泰拉瑞亚模组启动器）
+* [tModLoader](https://store.steampowered.com/app/1281930/)（泰拉瑞亚模组启动器）
 
-* [MechScope](https://steamcommunity.com/sharedfiles/filedetails/?id=3232991031 "MechScope")（电路步进模组）
+* [MechScope](https://steamcommunity.com/sharedfiles/filedetails/?id=3232991031)（电路步进模组）
 
-* [HERO's Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2564645933 "HERO's Mod")（辅助模组）
+* [HERO's Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2564645933)（辅助模组）
 
 此外，欢迎加入以下泰拉瑞亚电路社区，与其他玩家一起学习和讨论：
 
-* [泰拉瑞亚电路爱好者交流群](https://qm.qq.com/q/ZXDnybyQcE "QQ")
+* [泰拉瑞亚电路爱好者交流群](https://qm.qq.com/q/ZXDnybyQcE)（QQ）
 
-* [The Grand Designers](https://discord.gg/qby8FSkHAW "Discord")
+* [The Grand Designers](https://discord.gg/qby8FSkHAW)（Discord）
 
-* [Terraria Wiring Community](https://discord.gg/s6xbNqrUY2 "Discord")
+* [Terraria Wiring Community](https://discord.gg/s6xbNqrUY2)（Discord）
 
 本教程参考了以下其他教程，读者可以根据需要进一步阅读以加深理解：
 
-* [泰拉瑞亚电路文档](https://github.com/putianyi889/TerrariaWiringTutorial/releases "电路文档")
+* [泰拉瑞亚电路文档](https://github.com/putianyi889/TerrariaWiringTutorial/releases)（中文）
 
-* [The Ultimate Community Wiring Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2832101012 "The Ultimate Community Wiring Guide")
+* [The Ultimate Community Wiring Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2832101012)（英文）
