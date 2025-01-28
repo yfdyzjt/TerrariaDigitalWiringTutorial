@@ -28,3 +28,7 @@
 <!-- @import "chapters/ch_1.md" -->
 
 <!-- pagebreak -->
+
+<!-- @import "chapters/ch_2.md" -->
+
+<!-- pagebreak -->
