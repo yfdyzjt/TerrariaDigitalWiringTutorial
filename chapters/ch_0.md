@@ -1,8 +1,8 @@
 ## 绪论
 
-泰拉瑞亚作为一款冒险游戏，拥有独具特色的电路系统。本教程旨在为泰拉瑞亚玩家、其他游戏电路和现实电路爱好者，提供一个系统、全面的了解泰拉瑞亚电路的途径。本教程专注于泰拉瑞亚中的数字电路部分，不涉及过多游戏相关内容。如果你需要了解更多泰拉瑞亚的相关信息，请参考[泰拉瑞亚维基](https://terraria.wiki.gg/zh/wiki/Terraria_Wiki "Terraria_Wiki")。
+泰拉瑞亚作为一款冒险游戏，拥有独具特色的电路系统。本教程旨在为泰拉瑞亚玩家、其他游戏电路和现实电路爱好者，提供一个系统、全面的了解泰拉瑞亚电路的途径。本教程专注于泰拉瑞亚中的数字电路部分，不涉及过多游戏相关内容。如果你需要了解更多泰拉瑞亚的相关信息，请参考[泰拉瑞亚维基](https://terraria.wiki.gg/zh/wiki/Terraria_Wiki "泰拉瑞亚维基")。
 
-本教程具有配套的地图，并且教程中包含的电路会以地图编辑器简图的形式发布，可以在[本教程项目地址](https://github.com/yfdyzjt/TerrariaDigitalWiringTutorial "泰拉瑞亚数字电路教程")查看。
+本教程有配套的地图，并且教程中包含的电路会以[地图编辑器简图](https://github.com/TEdit/Terraria-Map-Editor/tree/main/schematics "地图编辑器简图")的形式发布，可以在[本教程项目地址](https://github.com/yfdyzjt/TerrariaDigitalWiringTutorial "泰拉瑞亚数字电路教程")查看。
 
 本教程分为六个章节：
 
