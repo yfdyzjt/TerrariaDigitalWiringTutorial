@@ -1,8 +1,7 @@
 # 泰拉瑞亚数字电路文档 {ignore=true}
 
-混乱沉睡，2025 年 12 月 12 日
-
-@import "main.png"
+!!! quote 混乱沉睡，2025 年 12 月 12 日 
+    @import "main.png"
 
 <div STYLE="page-break-after: always;"></div>
 
