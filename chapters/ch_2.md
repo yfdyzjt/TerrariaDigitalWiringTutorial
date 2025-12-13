@@ -491,55 +491,55 @@ $$Y = A \cdot B = (A \cdot B)'' = (A' + B')'$$
     A: $ 1 \over 7$; B: $2 \over 7$; C: $6 \over 7$; D: $1 \over 2$; E: $1$;
 
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_fault.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_fault.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     其他故障灯（激活效果与最下方故障灯相同）
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     其他普通灯（不影响概率）
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_off.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_off.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_fault.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_fault.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     最下方故障灯（下方为有效灯）
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_off.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_off.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     有效灯（激活故障灯时故障门激活概率为有效亮灯比全部有效灯）
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_lamp_on.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     
   </div>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 0;">
-  <img src="images/2/2/3/logic_gate_fault.png" style="display: block; margin: 0;" />
+  <img src="chapters/images/2/2/3/logic_gate_fault.png" style="display: block; margin: 0;" />
   <div style="margin-left: 10px;">
     故障门
   </div>
