@@ -1,6 +1,6 @@
 # 泰拉瑞亚数字电路文档 {ignore=true}
 
-!!! quote 混乱沉睡，2025 年 12 月 13 日 
+!!! quote 混乱沉睡，2025 年 12 月 20 日 
     @import "main.png"
 
 ## 目录 {ignore=true}
@@ -38,6 +38,10 @@
   - [2.3 逻辑结算](#23-逻辑结算)
     - [2.3.1 逻辑结算](#231-逻辑结算)
     - [2.3.2 爆门](#232-爆门)
+  - [2.4 逻辑电路](#24-逻辑电路)
+    - [2.4.1 组合逻辑与时序逻辑](#241-组合逻辑与时序逻辑)
+    - [2.4.2 最简逻辑电路](#242-最简逻辑电路)
+    - [2.4.3 电路模块](#243-电路模块)
 
 <!-- /code_chunk_output -->
 
@@ -50,5 +54,9 @@
 <div STYLE="page-break-after: always;"></div>
 
 <!-- @import "chapters/ch_2.md" -->
+
+<div STYLE="page-break-after: always;"></div>
+
+  <!-- @import "chapters/ch_3.md" -->
 
 <div STYLE="page-break-after: always;"></div>
