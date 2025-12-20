@@ -759,7 +759,7 @@ $$Y = A \cdot B = (A \cdot B)'' = (A' + B')'$$
 
 逻辑电路中，所有电线全部为状态电线的电路被称为组合逻辑电路；有至少一根电线为激活电线的电路称为时序逻辑电路。
 
-组合逻辑电路中只有与门和异或门，并且每根电线只在某个固定的逻辑帧激活，组合逻辑电路每个输出对应一个逻辑函数。时序逻辑电路中同一根电线可能在不同逻辑帧激活，并且不同逻辑帧激活可能表示不同信号。
+组合逻辑电路中只有与门和异或门，并且每根电线只在某个固定的逻辑帧激活，每个输出对应一个逻辑函数。时序逻辑电路中同一根电线可能在不同逻辑帧激活，并且不同逻辑帧激活可能表示不同信号。
 
 !!! example
     @import "images/2/4/1/adder.png"
@@ -781,7 +781,7 @@ $$Y = A \cdot B = (A \cdot B)'' = (A' + B')'$$
 
 #### 2.4.2 最简逻辑电路
 
-我们将一个逻辑门、该逻辑门上所有逻辑灯、连接该逻辑门与其上逻辑灯的所有电线组成的逻辑电路称为最简逻辑电路。形如最简电路，任何逻辑电路也是由一个或多个最简逻辑电路组成。
+我们将一个逻辑门、该逻辑门上所有逻辑灯、连接该逻辑门与其上逻辑灯的所有电线组成的逻辑电路称为最简逻辑电路。类似最简电路，任何逻辑电路也是由一个或多个最简逻辑电路组成。
 
 !!! example 
     @import "images/2/4/2/simplest_logic_wiring.png"
@@ -878,27 +878,32 @@ $$Y = A \cdot B = (A \cdot B)'' = (A' + B')'$$
     对于逻辑电路和步骤的划分，可根据需要任意进行。
 
 !!! example
-    @import "images/2/4/3/wiring_example.png"
+    !!! quote Quote 1
+        @import "images/2/4/3/wiring_example.png"
 
-    逻辑电路，计算机电路；
+        逻辑电路，计算机电路；
 
-    @import "images/2/4/3/module_example_1.png"
+    !!! quote Quote 2
+        @import "images/2/4/3/module_example_1.png"
 
-    电路模块，嵌入式中央处理器（CPU） CS161E；
+        电路模块，嵌入式中央处理器（CPU） CS161E；
 
-    @import "images/2/4/3/module_example_2.png"
+    !!! quote Quote 3
+        @import "images/2/4/3/module_example_2.png"
 
-    电路模块，算术逻辑单元（ALU）；
+        电路模块，算术逻辑单元（ALU）；
 
-    @import "images/2/4/3/component_example.png"
+    !!! quote Quote 4
+        @import "images/2/4/3/component_example.png"
 
-    电路部件，时序逻辑加法器（累加器）；
+        电路部件，时序逻辑加法器（累加器）；
 
-    @import "images/2/4/3/element_example.png"
+    !!! quote Quote 5
+        @import "images/2/4/3/element_example.png"
 
-    电路元件，T 触发器。
+        电路元件，T 触发器。
 
-    在这个例子中，每一级逻辑电路部分都是由下一级组成。
+    在这个例子中，每一级逻辑电路部分中都能找到下一级逻辑电路部分。
 
 ##### 组成
 
@@ -962,5 +967,3 @@ $$Y = A \cdot B = (A \cdot B)'' = (A' + B')'$$
     越大的标准电路的泛用性越差，并且通常需要根据具体情况调整。
 
 对于标准电路，我们需要关注它的输入与输出端口格式，以及输入与输出间的关系。当我们掌握某一标准电路的这两点后，我们可以在任何需要它的电路中一致的使用它。后续章节中出现的电路元件、电路部件、电路模块都是总结出的标准电路。
-
-!!! example 
