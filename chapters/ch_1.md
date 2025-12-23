@@ -528,7 +528,7 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
 !!! tip
     独热不满足结合律，多个变量独热和多个变量两两独热不等价。多个变量独热运算需要同时考虑所有输入，不能两两分别运算。
 
-    $$OneHot(A_1, A_2, \cdots, A_n) \neq OneHot( \cdots OneHot(A_1, A_2), \cdots, A_n)$$
+    $$OneHot(A_1, A_2, \cdots, A_n) \neq \\ OneHot(OneHot( \cdots OneHot(OneHot(A_1, A_2), A_3), \cdots A_{n - 1}), A_n)$$
 
     !!! example
         上述三变量输入独热和异或的例子中，全部输入为 1 的情况独热和异或输出不同（两两异或与两两独热输出相同）。
@@ -577,6 +577,92 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
 与非、或非、同或、独热非运算并没有引入新的运算符，它们的真值表可自行推导。
 
 ##### 比较
+
+比较运算同样是常用的逻辑运算之一。比较两个变量的大小或关系，当条件成立时输出 1，否则输出 0。
+
+对于两个变量，可以定义六种基本的比较关系：小于、大于、小于等于、大于等于、等于、不等于。它们在所有输入情况下的输出如下表所示：
+
+| > | 输入 | > | > | > | > | > | 输出 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A | B | $A < B$ | $A > B$ | $A <= B$ | $A >= B$ | $A == B$ | $A\ != B$ |
+| 0 | 0 | 0 | 0 | 1 | 1 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 |
+| 1 | 0 | 0 | 1 | 1 | 0 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 |
+
+!!! info
+    与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：
+
+    $$A_1 \land A_2 \land \cdots \land A_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}1 \\0&\textrm{其他情况}\end{array}\right.$$
+
+    如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出 1，否则输出 0：
+
+    $$\lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}0 \\0&\textrm{其他情况}\end{array}\right.$$
+
+    若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为 0”时输出 1，其余情况输出 0：
+
+    $$A_1 \land A_2 \land \cdots \land A_m \land \lnot B_1 \land \lnot B_2 \land \cdots \land \lnot B_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}1 \textrm{且} \\ & B_1,\cdots,B_n \textrm{全部为}0 \\0&\textrm{其他情况}\end{array}\right.$$
+
+    这种只在真值表中某一行输出为 1 的逻辑表达式称为 **最小项**。
+
+    !!! example
+        对于三输入逻辑函数，若只希望在 $A=0,B=1,C=1$ 时输出 1，可以使用最小项 $\lnot A \land B \land C$，该表达式仅在这一输入组合下输出 1。
+
+    对于 $n$ 个变量，每个变量在最小项中都有“取反”和“不取反”两种情况，因此共有 $2^n$ 个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为 1。
+
+    !!! example
+        三输入变量对应的最小项如下：
+
+        | > | > | 输入 | 输出为 1 最小项 |
+        | --- | --- | --- | --- |
+        | A | B | C | Y |
+        | 0 | 0 | 0 | $\lnot A \land \lnot B \land \lnot C$ |
+        | 0 | 0 | 1 | $\lnot A \land \lnot B \land C$ |
+        | 0 | 1 | 0 | $\lnot A \land B \land \lnot C$ |
+        | 0 | 1 | 1 | $\lnot A \land B \land C$ |
+        | 1 | 0 | 0 | $A \land \lnot B \land \lnot C$ |
+        | 1 | 0 | 1 | $A \land \lnot B \land C$ |
+        | 1 | 1 | 0 | $A \land B \land \lnot C$ |
+        | 1 | 1 | 1 | $A \land B \land C$ |
+
+        可以看到：真值表中某变量为 0，对应最小项中该变量取反；为 1，则不取反。
+
+    当输出为 1 的情况不止一个时，可以将对应的最小项用异或连接。由于任意输入下最多只有一个最小项为 1，异或运算即可正确合并这些情况。这种由异或连接的最小项称为 **最小项之和**，它可以表示任意逻辑函数。
+
+    !!! example
+        对于下表所示的三输入逻辑函数：
+
+        | > | > | 输入 | 输出 |
+        | --- | --- | --- | --- |
+        | A | B | C | Y |
+        | 0 | 0 | 0 | 0 |
+        | 0 | 0 | 1 | 0 |
+        | 0 | 1 | 0 | 0 |
+        | 0 | 1 | 1 | 1 |
+        | 1 | 0 | 0 | 0 |
+        | 1 | 0 | 1 | 1 |
+        | 1 | 1 | 0 | 1 |
+        | 1 | 1 | 1 | 1 |
+
+        其逻辑表达式可写为：
+        
+        $$\lnot A \land B \land C \oplus A \land \lnot B \land C \oplus A \land B \land \lnot C \oplus A \land B \land C$$
+
+        对应四个输出为 1 的最小项之和。
+
+利用最小项之和，可以得到六种比较运算对应的逻辑表达式：
+
+| 运算 | 记号 | 逻辑表达式 |
+| --- | --- | --- |
+| 小于 | $A < B$ | $\lnot A \land B$ |
+| 大于等于 | $A >= B$ | $\lnot (\lnot A \land B)$ |
+| 大于 | $A > B$ | $A \land \lnot B$ |
+| 小于等于 | $A <= B$ | $\lnot (A \land \lnot B)$ |
+| 不等于 | $A\ != B$ | $A \oplus B$ |
+| 等于 | $A == B$ | $\lnot (A \oplus B)$ |
+
+!!! tip
+    可以看到，小于与大于等于、大于与小于等于、不等于与等于两两互为取反。在比较电路中，常利用这一性质减少所需的逻辑门数量。
 
 ##### 加、减、乘
 
