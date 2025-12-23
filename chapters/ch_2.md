@@ -440,7 +440,7 @@ $$\lnot(A \land B) = \lnot A \lor \lnot B$$
 $$\lnot(A \lor B) = \lnot A \land \lnot B$$
 
 !!! tip
-    对于三项及三项以上仍然是成立的。
+    对于三项及三项以上仍然是成立的，可自行证明。
 
 将或门的逻辑表达式进行两次取反，然后可将或逻辑转换为与逻辑：
 
