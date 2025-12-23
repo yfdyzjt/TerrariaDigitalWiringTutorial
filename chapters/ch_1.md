@@ -593,22 +593,22 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
 !!! info
     与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：
 
-    $$A_1 \land A_2 \land \cdots \land A_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}1 \\0&\textrm{其他情况}\end{array}\right.$$
+    $$A_1 \land A_2 \land \cdots \land A_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 1 \\0&\textrm{其他情况}\end{array}\right.$$
 
     如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出 1，否则输出 0：
 
-    $$\lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}0 \\0&\textrm{其他情况}\end{array}\right.$$
+    $$\lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 0 \\0&\textrm{其他情况}\end{array}\right.$$
 
     若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为 0”时输出 1，其余情况输出 0：
 
-    $$A_1 \land A_2 \land \cdots \land A_m \land \lnot B_1 \land \lnot B_2 \land \cdots \land \lnot B_n = \left\{\begin{array}{ll}1 & \textrm{如果}A_1,\cdots,A_n\textrm{全部为}1 \textrm{且} \\ & B_1,\cdots,B_n \textrm{全部为}0 \\0&\textrm{其他情况}\end{array}\right.$$
+    $$A_1 \land A_2 \land \cdots \land A_m \land \lnot B_1 \land \lnot B_2 \land \cdots \land \lnot B_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 1 \textrm{且} \\ & B_1 = B_2 = \cdots = B_n = 0 \\0&\textrm{其他情况}\end{array}\right.$$
 
     这种只在真值表中某一行输出为 1 的逻辑表达式称为 **最小项**。
 
     !!! example
         对于三输入逻辑函数，若只希望在 $A=0,B=1,C=1$ 时输出 1，可以使用最小项 $\lnot A \land B \land C$，该表达式仅在这一输入组合下输出 1。
 
-    对于 $n$ 个变量，每个变量在最小项中都有“取反”和“不取反”两种情况，因此共有 $2^n$ 个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为 1。
+    最小项中每个输入逻辑变量都会出现，且只会出现一次；每个变量在最小项中都有“取反”和“不取反”两种情况。因此对于 $n$ 个变量，一共有 $2^n$ 个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为 1。
 
     !!! example
         三输入变量对应的最小项如下：
@@ -625,7 +625,7 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
         | 1 | 1 | 0 | $A \land B \land \lnot C$ |
         | 1 | 1 | 1 | $A \land B \land C$ |
 
-        可以看到：真值表中某变量为 0，对应最小项中该变量取反；为 1，则不取反。
+        可以看到真值表中某变量为 0，对应最小项中该变量取反；为 1，则不取反。
 
     当输出为 1 的情况不止一个时，可以将对应的最小项用异或连接。由于任意输入下最多只有一个最小项为 1，异或运算即可正确合并这些情况。这种由异或连接的最小项称为 **最小项之和**，它可以表示任意逻辑函数。
 
@@ -666,7 +666,221 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
 
 ##### 加、减、乘
 
-#### 1.2.9 逻辑运算律
+在逻辑运算中，同样存在加、减、乘等运算。
 
+两个变量乘运算的逻辑表达式为：
 
-#### 1.2.10 最小项
+$$A \cdot B$$
+
+!!! info
+    读作 A 乘 B。
+
+或者简写为：
+
+$$AB$$
+
+$n$ 个变量乘运算的逻辑表达式为：
+
+$$A_1 \cdot A_2 \cdot \cdots \cdot A_n$$
+
+或者简写为：
+
+$$A_1 A_2 \cdots A_n$$
+
+由乘法关系：
+
+$0 \cdot 0 = 0$
+$0 \cdot 1 = 0$
+$1 \cdot 0 = 0$
+$1 \cdot 1 = 1$
+
+!!! tip
+    任何数乘以 0 等于 0，任何数乘以 1 等于其本身。
+
+可列出真值表：
+
+| > | 输入 | 输出 |
+| --- | --- | --- |
+| A | B | Y |
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+!!! tip
+    可以发现与运算就是乘法运算。
+
+    $$A \cdot B = A \land B$$
+
+!!! info
+    观察上方真值表可发现，当 $A = B$ 时 $Y = A = B$，可得出以下推论：
+
+    $$A \cdot A = A$$
+
+    易证：
+
+    $$A \cdot A \cdot \cdots \cdot A = A$$
+
+两个变量加运算的逻辑表达式为：
+
+$$A + B$$
+
+!!! info
+    读作 A 加 B。
+
+$n$ 个变量加运算的逻辑表达式为：
+
+$$A_1 + A_2 + \cdots + A_n$$
+
+!!! question
+    $$1 + 1 = \ ?$$
+
+    如果是在实数域，我们可以很容易的说出 $1 + 1 = 2$ ，但是在逻辑变量中并没有 $2$。实际上，在逻辑运算中 $1 + 1 = 0$。
+
+    我们可以用两种方式理解这个结果：
+
+    * 如果是有进位加法 $(1 + 1 = 10)_2$，由于逻辑函数只有一位输出，所以抛弃高位的 $1$，只保留低位的 $0$；
+    * 加法可以理解为在数轴上从一个加数出发，前进另一个加数的距离，对于一个只有 $0$ 和 $1$ 的数轴，如果从 $1$ 出发前进 $1$，就会到达 $0$。
+
+    $$\cdots \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} \cdots$$
+
+由加法关系：
+
+$0 + 0 = 0$
+$0 + 1 = 1$
+$1 + 0 = 1$
+$1 + 1 = 0$
+
+!!! tip
+    任何数加 0 等于其本身，任何数加 1 等于其取反。
+
+!!! info
+    由“任何数加 1 等于其取反”可得：
+
+    $$\lnot A = A + 1$$
+
+    可使用加运算表示非运算。
+
+可列出真值表：
+
+| > | 输入 | 输出 |
+| --- | --- | --- |
+| A | B | Y |
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+!!! tip
+    可以发现异或运算就是加法运算。
+
+    $$A + B = A \oplus B$$
+
+!!! info
+    观察上方真值表可发现，当 A = B 时 Y = 0，可得出以下推论：
+
+    $$A + A = 0$$
+
+    易证：
+
+    $$\underbrace{A + A + \cdots + A}_{n} = \begin{cases} 0, & n = 2k, \\[4pt] A, & n = 2k+1, \end{cases} \qquad k \in \mathbb{N}.$$
+
+!!! tip
+    逻辑运算的结果也是逻辑变量，这里的乘法和加法是逻辑变量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。
+
+    $$Y = (A \cdot B) \bmod 2$$
+
+    $$Y = (A + B) \bmod 2$$
+
+    由于逻辑变量和逻辑运算都在 $GF(2)$ 上，所以可以省略 $\bmod \ 2$。
+
+观察 $GF(2)$ 的数轴可以发现，从一个数出发，向左或向右前进相同距离的结果是一样的。
+
+$$\cdots \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} \cdots$$
+
+所以可以得出结论：
+
+$$A + B = A - B$$
+
+也就是说，在逻辑运算中，**加减等价**。
+
+!!! info
+    令 $A = 0$，可得出以下推论：
+
+    $$B = -B$$
+
+!!! info
+    加法和乘法满足交换律：
+
+    $$A + B = B + A$$
+
+    $$A \cdot B = B \cdot A$$
+
+    加法和乘法满足结合律：
+
+    $$A + (B + C) = (A + B) + C$$
+
+    $$A \cdot (B \cdot C) = (A \cdot B) \cdot C$$
+
+    加法不满足分配律，乘法满足分配律：
+
+    $$A + B \cdot C \neq (A + B) \cdot (A + C)$$
+
+    $$A \cdot (B + C) = A \cdot B + A \cdot C$$
+
+    相同运算符的运算次序是 **先左后右**，而不同运算符的运算次序是先乘法再加法，若有括号，则先进行括号内运算。
+
+!!! example
+    上述或运算使用与、异或、非表示为：
+
+    $$A \lor B = \lnot (\lnot A \land \lnot B)$$
+
+    使用加、减、乘表示为：
+
+    $$\lnot (\lnot A \land \lnot B) = (A + 1)(B + 1) + 1 = AB + A + B + 1 + 1 = AB + A + B$$
+
+    同理，当我们看到逻辑表达式 $AB + A + B$ 可以使用因式分解将其写成类似 $(A + 1)(B + 1) + 1$ 的形式：
+
+    $$AB + A + B = AB + A + B + 1 - 1 = (A + 1)(B + 1) + 1$$
+
+    !!! tip
+        这里利用了推论 $1 = -1$。
+
+!!! example
+    考虑三输入独热真值表：
+
+    | > | > | 输入 | 输出 |
+    | --- | --- | --- | --- |
+    | A | B | C | Y |
+    | 0 | 0 | 0 | 0 |
+    | 0 | 0 | 1 | 1 |
+    | 0 | 1 | 0 | 1 |
+    | 0 | 1 | 1 | 0 |
+    | 1 | 0 | 0 | 1 |
+    | 1 | 0 | 1 | 0 |
+    | 1 | 1 | 0 | 0 |
+    | 1 | 1 | 1 | 0 |
+
+    写成最小项之和的形式：
+
+    $$OneHot(A, B, C) = \lnot A \land \lnot B \land C \oplus \lnot A \land B \land \lnot C \oplus A \land \lnot B \land \lnot C$$
+
+    使用加、减、乘表示为：
+
+    $$\begin{array}{lll} OneHot(A, B, C) & = & (A + 1)(B + 1)C + (A + 1)B(C + 1) + A(B + 1)(C + 1) \\ & = & (AB + A + B + 1)C + \\ & & (AC + A + C + 1)B + \\ & & (BC + B + C + 1)A \\ & = & ABC + AC + BC + C + \\ & & ABC + AB + BC + B + \\ & & ABC + AB + AC + A \\ & = & ABC + A + B + C\end{array}$$
+
+    !!! tip
+        这里利用了推论 $A + A = 0$，出现奇数次的项被保留，偶数次的项被消掉。
+
+    同理四输入独热的表达式为：
+
+    $$OneHot(A, B, C, D) = ABC + ABD + ACD + BCD + A + B + C + D$$
+
+    !!! tip
+        证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。
+
+    对于 $n$ 变量独热运算，可被化简为下方逻辑式：
+
+    $$\mathrm{OneHot}(x_1,\dots,x_n) = \sum_{\substack{I\subseteq\{1, 3, 5,\dots,n\}\\I\text{ 为奇数}}} \; \prod_{i\in I} x_i$$
+
+#### 1.2.9 最小项
