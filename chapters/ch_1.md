@@ -393,7 +393,7 @@ $$\lnot A$$
 
 上一节介绍了与、异或、非三种基本逻辑运算，以及对应的运算符号“ $\land$ ”、“ $\oplus$ ”、“ $\lnot$ ”，它们统称为逻辑运算符。由逻辑变量和逻辑运算符组成的表达式被称为逻辑函数表达式或逻辑表达式，简称为逻辑式。它是描述逻辑函数与逻辑变量之间关系的表达式，逻辑式和真值表都是描述逻辑函数的重要工具。
 
-有一些较为复杂的逻辑式也是由基本运算符组合而成的。在逻辑式中，相同运算符的运算次序是 **先左后右**，而不同运算符的运算次序是 **非 > 与 > 异或**，若有括号，则先进行括号内运算。
+有一些较为复杂的逻辑式也是由基本运算符组合而成的。在逻辑式中，相同运算符的运算次序是 **先左后右**，而不同运算符的运算次序是 **非 > 与 > 异或**，若有括号，则 **先进行括号内运算**。
 
 !!! example
     逻辑式 $A \land \lnot B \land \lnot C \oplus \lnot A \land B \land \lnot C \oplus \lnot A \land \lnot B \land C$ ，读作 A 与 B 非 与 C 非 异或 A 非 与 B 与 C 非 异或 A 非 与 B 非 与 C。计算时先计算六个非运算，然后再计算六个与运算，最后再计算两个异或运算。
@@ -463,7 +463,7 @@ $$A_1 \lor A_2 \lor \cdots \lor A_n$$
 
 ##### 独热（One-hot）
 
-独热运算用函数“ $OneHot$ ”表示，称为独热。
+独热运算用函数“ $\mathrm{OneHot}$ ”表示，称为独热。
 
 独热运算是多元运算，在全部输入中只有一个输入为 1 时，输出为 1；其余情况输出为 0。
 
@@ -472,7 +472,7 @@ $$A_1 \lor A_2 \lor \cdots \lor A_n$$
 
 两个变量独热运算的逻辑表达式为：
 
-$$OneHot(A, B)$$
+$$\mathrm{OneHot}(A, B)$$
 
 !!! info
     读作独热 A, B。
@@ -488,7 +488,11 @@ $$OneHot(A, B)$$
 | 1 | 1 | 0 |
 
 !!! tip 
-    可以发现两个变量独热运算和异或运算输出完全相同，但是当输入变量在三个或以上时，独热运算和异或运算不同。
+    可以发现两个变量独热运算和异或运算输出完全相同：
+    
+    $$\mathrm{OneHot}(A, B) = A \oplus B$$
+    
+    但是当输入变量在三个或以上时，独热运算和异或运算不同。
 
     !!! example
         三个变量异或的真值表是：
@@ -523,23 +527,23 @@ $$OneHot(A, B)$$
 
 $n$ 个变量独热运算的逻辑表达式为：
 
-$$OneHot(A_1, A_2, \cdots , A_n)$$
+$$\mathrm{OneHot}(A_1, A_2, \cdots , A_n)$$
 
 !!! tip
     独热不满足结合律，多个变量独热和多个变量两两独热不等价。多个变量独热运算需要同时考虑所有输入，不能两两分别运算。
 
-    $$OneHot(A_1, A_2, \cdots, A_n) \neq \\ OneHot(OneHot( \cdots OneHot(OneHot(A_1, A_2), A_3), \cdots A_{n - 1}), A_n)$$
+    $$\mathrm{OneHot}(A_1, A_2, \cdots, A_n) \neq \\ \mathrm{OneHot}(\mathrm{OneHot}( \cdots \mathrm{OneHot}(\mathrm{OneHot}(A_1, A_2), A_3), \cdots A_{n - 1}), A_n)$$
 
     !!! example
         上述三变量输入独热和异或的例子中，全部输入为 1 的情况独热和异或输出不同（两两异或与两两独热输出相同）。
 
-        $OneHot(1, 1, 1) = 0$
+        $\mathrm{OneHot}(1, 1, 1) = 0$
 
-        $OneHot(OneHot(1, 1), 1) = OneHot(0, 1) = 1$
+        $\mathrm{OneHot}(\mathrm{OneHot}(1, 1), 1) = \mathrm{OneHot}(0, 1) = 1$
 
-        $OneHot(1, 1, 1) \neq OneHot(OneHot(1, 1), 1)$
+        $\mathrm{OneHot}(1, 1, 1) \neq \mathrm{OneHot}(\mathrm{OneHot}(1, 1), 1)$
 
-        $OneHot(A_1, A_2, A_3) \neq OneHot(OneHot(A_1, A_2), A_3)$
+        $\mathrm{OneHot}(A_1, A_2, A_3) \neq \mathrm{OneHot}(\mathrm{OneHot}(A_1, A_2), A_3)$
 
 !!! info
     独热运算的逻辑表达式也可以用与、异或、非来表示：
@@ -571,316 +575,7 @@ $$OneHot(A_1, A_2, \cdots , A_n)$$
 | 或非 | NOR | $\lnot (A \lor B)$ | $\lnot (A_1 \lor A_2 \lor \cdots \lor A_n)$ |
 | 异或 | XOR | $A \oplus B$ | $A_1 \oplus A_2 \oplus \cdots \oplus A_n$ |
 | 同或 | XNOR |  $\lnot (A \oplus B)$ | $\lnot (A_1 \oplus A_2 \oplus \cdots \oplus A_n)$ |
-| 独热 | One-hot | $OneHot(A, B)$ | $OneHot(A_1, A_2, \cdots, A_n)$ |
-| 独热非 | Not One-hot | $\lnot OneHot(A, B)$ | $\lnot OneHot(A_1, A_2, \cdots, A_n)$ |
+| 独热 | One-hot | $\mathrm{OneHot}(A, B)$ | $\mathrm{OneHot}(A_1, A_2, \cdots, A_n)$ |
+| 独热非 | Not One-hot | $\lnot \mathrm{OneHot}(A, B)$ | $\lnot \mathrm{OneHot}(A_1, A_2, \cdots, A_n)$ |
 
 与非、或非、同或、独热非运算并没有引入新的运算符，它们的真值表可自行推导。
-
-##### 比较
-
-比较运算同样是常用的逻辑运算之一。比较两个变量的大小或关系，当条件成立时输出 1，否则输出 0。
-
-对于两个变量，可以定义六种基本的比较关系：小于、大于、小于等于、大于等于、等于、不等于。它们在所有输入情况下的输出如下表所示：
-
-| > | 输入 | > | > | > | > | > | 输出 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| A | B | $A < B$ | $A > B$ | $A <= B$ | $A >= B$ | $A == B$ | $A\ != B$ |
-| 0 | 0 | 0 | 0 | 1 | 1 | 1 | 0 |
-| 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 |
-| 1 | 0 | 0 | 1 | 1 | 0 | 0 | 1 |
-| 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 |
-
-!!! info
-    与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：
-
-    $$A_1 \land A_2 \land \cdots \land A_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 1 \\0&\textrm{其他情况}\end{array}\right.$$
-
-    如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出 1，否则输出 0：
-
-    $$\lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 0 \\0&\textrm{其他情况}\end{array}\right.$$
-
-    若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为 0”时输出 1，其余情况输出 0：
-
-    $$A_1 \land A_2 \land \cdots \land A_m \land \lnot B_1 \land \lnot B_2 \land \cdots \land \lnot B_n = \left\{\begin{array}{ll}1 & A_1 = A_2 = \cdots = A_n = 1 \textrm{且} \\ & B_1 = B_2 = \cdots = B_n = 0 \\0&\textrm{其他情况}\end{array}\right.$$
-
-    这种只在真值表中某一行输出为 1 的逻辑表达式称为 **最小项**。
-
-    !!! example
-        对于三输入逻辑函数，若只希望在 $A=0,B=1,C=1$ 时输出 1，可以使用最小项 $\lnot A \land B \land C$，该表达式仅在这一输入组合下输出 1。
-
-    最小项中每个输入逻辑变量都会出现，且只会出现一次；每个变量在最小项中都有“取反”和“不取反”两种情况。因此对于 $n$ 个变量，一共有 $2^n$ 个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为 1。
-
-    !!! example
-        三输入变量对应的最小项如下：
-
-        | > | > | 输入 | 输出为 1 最小项 |
-        | --- | --- | --- | --- |
-        | A | B | C | Y |
-        | 0 | 0 | 0 | $\lnot A \land \lnot B \land \lnot C$ |
-        | 0 | 0 | 1 | $\lnot A \land \lnot B \land C$ |
-        | 0 | 1 | 0 | $\lnot A \land B \land \lnot C$ |
-        | 0 | 1 | 1 | $\lnot A \land B \land C$ |
-        | 1 | 0 | 0 | $A \land \lnot B \land \lnot C$ |
-        | 1 | 0 | 1 | $A \land \lnot B \land C$ |
-        | 1 | 1 | 0 | $A \land B \land \lnot C$ |
-        | 1 | 1 | 1 | $A \land B \land C$ |
-
-        可以看到真值表中某变量为 0，对应最小项中该变量取反；为 1，则不取反。
-
-    当输出为 1 的情况不止一个时，可以将对应的最小项用异或连接。由于任意输入下最多只有一个最小项为 1，异或运算即可正确合并这些情况。这种由异或连接的最小项称为 **最小项之和**，它可以表示任意逻辑函数。
-
-    !!! example
-        对于下表所示的三输入逻辑函数：
-
-        | > | > | 输入 | 输出 |
-        | --- | --- | --- | --- |
-        | A | B | C | Y |
-        | 0 | 0 | 0 | 0 |
-        | 0 | 0 | 1 | 0 |
-        | 0 | 1 | 0 | 0 |
-        | 0 | 1 | 1 | 1 |
-        | 1 | 0 | 0 | 0 |
-        | 1 | 0 | 1 | 1 |
-        | 1 | 1 | 0 | 1 |
-        | 1 | 1 | 1 | 1 |
-
-        其逻辑表达式可写为：
-        
-        $$\lnot A \land B \land C \oplus A \land \lnot B \land C \oplus A \land B \land \lnot C \oplus A \land B \land C$$
-
-        对应四个输出为 1 的最小项之和。
-
-利用最小项之和，可以得到六种比较运算对应的逻辑表达式：
-
-| 运算 | 记号 | 逻辑表达式 |
-| --- | --- | --- |
-| 小于 | $A < B$ | $\lnot A \land B$ |
-| 大于等于 | $A >= B$ | $\lnot (\lnot A \land B)$ |
-| 大于 | $A > B$ | $A \land \lnot B$ |
-| 小于等于 | $A <= B$ | $\lnot (A \land \lnot B)$ |
-| 不等于 | $A\ != B$ | $A \oplus B$ |
-| 等于 | $A == B$ | $\lnot (A \oplus B)$ |
-
-!!! tip
-    可以看到，小于与大于等于、大于与小于等于、不等于与等于两两互为取反。在比较电路中，常利用这一性质减少所需的逻辑门数量。
-
-##### 加、减、乘
-
-在逻辑运算中，同样存在加、减、乘等运算。
-
-两个变量乘运算的逻辑表达式为：
-
-$$A \cdot B$$
-
-!!! info
-    读作 A 乘 B。
-
-或者简写为：
-
-$$AB$$
-
-$n$ 个变量乘运算的逻辑表达式为：
-
-$$A_1 \cdot A_2 \cdot \cdots \cdot A_n$$
-
-或者简写为：
-
-$$A_1 A_2 \cdots A_n$$
-
-由乘法关系：
-
-$0 \cdot 0 = 0$
-$0 \cdot 1 = 0$
-$1 \cdot 0 = 0$
-$1 \cdot 1 = 1$
-
-!!! tip
-    任何数乘以 0 等于 0，任何数乘以 1 等于其本身。
-
-可列出真值表：
-
-| > | 输入 | 输出 |
-| --- | --- | --- |
-| A | B | Y |
-| 0 | 0 | 0 |
-| 0 | 1 | 0 |
-| 1 | 0 | 0 |
-| 1 | 1 | 1 |
-
-!!! tip
-    可以发现与运算就是乘法运算。
-
-    $$A \cdot B = A \land B$$
-
-!!! info
-    观察上方真值表可发现，当 $A = B$ 时 $Y = A = B$，可得出以下推论：
-
-    $$A \cdot A = A$$
-
-    易证：
-
-    $$A \cdot A \cdot \cdots \cdot A = A$$
-
-两个变量加运算的逻辑表达式为：
-
-$$A + B$$
-
-!!! info
-    读作 A 加 B。
-
-$n$ 个变量加运算的逻辑表达式为：
-
-$$A_1 + A_2 + \cdots + A_n$$
-
-!!! question
-    $$1 + 1 = \ ?$$
-
-    如果是在实数域，我们可以很容易的说出 $1 + 1 = 2$ ，但是在逻辑变量中并没有 $2$。实际上，在逻辑运算中 $1 + 1 = 0$。
-
-    我们可以用两种方式理解这个结果：
-
-    * 如果是有进位加法 $(1 + 1 = 10)_2$，由于逻辑函数只有一位输出，所以抛弃高位的 $1$，只保留低位的 $0$；
-    * 加法可以理解为在数轴上从一个加数出发，前进另一个加数的距离，对于一个只有 $0$ 和 $1$ 的数轴，如果从 $1$ 出发前进 $1$，就会到达 $0$。
-
-    $$\cdots \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} \cdots$$
-
-由加法关系：
-
-$0 + 0 = 0$
-$0 + 1 = 1$
-$1 + 0 = 1$
-$1 + 1 = 0$
-
-!!! tip
-    任何数加 0 等于其本身，任何数加 1 等于其取反。
-
-!!! info
-    由“任何数加 1 等于其取反”可得：
-
-    $$\lnot A = A + 1$$
-
-    可使用加运算表示非运算。
-
-可列出真值表：
-
-| > | 输入 | 输出 |
-| --- | --- | --- |
-| A | B | Y |
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
-
-!!! tip
-    可以发现异或运算就是加法运算。
-
-    $$A + B = A \oplus B$$
-
-!!! info
-    观察上方真值表可发现，当 A = B 时 Y = 0，可得出以下推论：
-
-    $$A + A = 0$$
-
-    易证：
-
-    $$\underbrace{A + A + \cdots + A}_{n} = \begin{cases} 0, & n = 2k, \\[4pt] A, & n = 2k+1, \end{cases} \qquad k \in \mathbb{N}.$$
-
-!!! tip
-    逻辑运算的结果也是逻辑变量，这里的乘法和加法是逻辑变量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。
-
-    $$Y = (A \cdot B) \bmod 2$$
-
-    $$Y = (A + B) \bmod 2$$
-
-    由于逻辑变量和逻辑运算都在 $GF(2)$ 上，所以可以省略 $\bmod \ 2$。
-
-观察 $GF(2)$ 的数轴可以发现，从一个数出发，向左或向右前进相同距离的结果是一样的。
-
-$$\cdots \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} 0 \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\,} \cdots$$
-
-所以可以得出结论：
-
-$$A + B = A - B$$
-
-也就是说，在逻辑运算中，**加减等价**。
-
-!!! info
-    令 $A = 0$，可得出以下推论：
-
-    $$B = -B$$
-
-!!! info
-    加法和乘法满足交换律：
-
-    $$A + B = B + A$$
-
-    $$A \cdot B = B \cdot A$$
-
-    加法和乘法满足结合律：
-
-    $$A + (B + C) = (A + B) + C$$
-
-    $$A \cdot (B \cdot C) = (A \cdot B) \cdot C$$
-
-    加法不满足分配律，乘法满足分配律：
-
-    $$A + B \cdot C \neq (A + B) \cdot (A + C)$$
-
-    $$A \cdot (B + C) = A \cdot B + A \cdot C$$
-
-    相同运算符的运算次序是 **先左后右**，而不同运算符的运算次序是先乘法再加法，若有括号，则先进行括号内运算。
-
-!!! example
-    上述或运算使用与、异或、非表示为：
-
-    $$A \lor B = \lnot (\lnot A \land \lnot B)$$
-
-    使用加、减、乘表示为：
-
-    $$\lnot (\lnot A \land \lnot B) = (A + 1)(B + 1) + 1 = AB + A + B + 1 + 1 = AB + A + B$$
-
-    同理，当我们看到逻辑表达式 $AB + A + B$ 可以使用因式分解将其写成类似 $(A + 1)(B + 1) + 1$ 的形式：
-
-    $$AB + A + B = AB + A + B + 1 - 1 = (A + 1)(B + 1) + 1$$
-
-    !!! tip
-        这里利用了推论 $1 = -1$。
-
-!!! example
-    考虑三输入独热真值表：
-
-    | > | > | 输入 | 输出 |
-    | --- | --- | --- | --- |
-    | A | B | C | Y |
-    | 0 | 0 | 0 | 0 |
-    | 0 | 0 | 1 | 1 |
-    | 0 | 1 | 0 | 1 |
-    | 0 | 1 | 1 | 0 |
-    | 1 | 0 | 0 | 1 |
-    | 1 | 0 | 1 | 0 |
-    | 1 | 1 | 0 | 0 |
-    | 1 | 1 | 1 | 0 |
-
-    写成最小项之和的形式：
-
-    $$OneHot(A, B, C) = \lnot A \land \lnot B \land C \oplus \lnot A \land B \land \lnot C \oplus A \land \lnot B \land \lnot C$$
-
-    使用加、减、乘表示为：
-
-    $$\begin{array}{lll} OneHot(A, B, C) & = & (A + 1)(B + 1)C + (A + 1)B(C + 1) + A(B + 1)(C + 1) \\ & = & (AB + A + B + 1)C + \\ & & (AC + A + C + 1)B + \\ & & (BC + B + C + 1)A \\ & = & ABC + AC + BC + C + \\ & & ABC + AB + BC + B + \\ & & ABC + AB + AC + A \\ & = & ABC + A + B + C\end{array}$$
-
-    !!! tip
-        这里利用了推论 $A + A = 0$，出现奇数次的项被保留，偶数次的项被消掉。
-
-    同理四输入独热的表达式为：
-
-    $$OneHot(A, B, C, D) = ABC + ABD + ACD + BCD + A + B + C + D$$
-
-    !!! tip
-        证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。
-
-    对于 $n$ 变量独热运算，可被化简为下方逻辑式：
-
-    $$\mathrm{OneHot}(x_1,\dots,x_n) = \sum_{\substack{I\subseteq\{1, 3, 5,\dots,n\}\\I\text{ 为奇数}}} \; \prod_{i\in I} x_i$$
-
-#### 1.2.9 最小项

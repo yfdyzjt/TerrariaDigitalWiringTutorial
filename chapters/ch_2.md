@@ -714,7 +714,7 @@ $$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
 上层结算由多个下层结算组成，并通过逐层拆分完成：只有当前层级包含的所有下层结算全部完成后，才会继续执行当前层级的后续流程。
 
 !!! tip
-    实际应用中，我们常用工具（Mech Scope 模组）来观察电路结算顺序，大型时序电路在不使用工具的情况下很难进行测试。
+    实际应用中，我们常用工具（[电路步进模组 MechScope](https://steamcommunity.com/sharedfiles/filedetails/?id=3232991031)）来观察电路结算顺序，大型时序电路在不使用工具的情况下很难进行测试。
 
 #### 2.3.2 爆门
 
