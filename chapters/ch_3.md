@@ -10,7 +10,7 @@
     现实组合逻辑电路中存在三种基本逻辑运算：**与、或、非**。
 
 !!! tip
-    线或应用于激活用电器，属于时序逻辑电路，并且组合逻辑电路中并不会使用或门，所以或并不属于组合逻辑电路的基本逻辑运算。
+    线或应用于激活用电器，属于时序逻辑电路，此外组合逻辑电路中并不会使用或门，所以或并不属于组合逻辑电路的基本逻辑运算。
 
 ##### 非
 
@@ -254,7 +254,7 @@ $$A_1 + A_2 + \cdots + A_n$$
     我们可以用两种方式理解这个结果：
 
     * 如果是有进位加法 $(1 + 1 = 10)_2$，由于逻辑函数只有一位输出，所以抛弃高位的 $1$，只保留低位的 $0$；
-    * 加法可以理解为在数轴上从一个加数出发，前进另一个加数的距离，对于一个只有 $0$ 和 $1$ 的数轴，如果从 $1$ 出发前进 $1$，就会到达 $0$。
+    * 加法可以理解为在数轴上从一个加数出发，前进另一个加数的距离，对于一个只有 $0$ 和 $1$ 首尾相连的循环数轴，如果从 $1$ 出发前进 $1$，就会到达 $0$。
 
     $$\cdots \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} \cdots$$
 
@@ -297,7 +297,7 @@ $1 + 1 = 0$
     @import "images/3/1/2/add_0_1.png"
 
     !!! tip
-        加 1 相当于线非。
+        线异或两项中的一项恒为 1 相当于线非。
 
     任何数加本身等于 0。
 
@@ -312,17 +312,25 @@ $1 + 1 = 0$
 
     @import "images/3/1/2/add_self.png"
 
-    @import "images/3/1/2/add_self_many.png"
-
     !!! tip
         奇数个相同项相加等于其本身，偶数个相同项相加等于 0。
 
-    !!! tip
-        有时会需要让某根电线穿过双灯异或门而不干扰异或门逻辑，这时可以使用这个技巧。
+    @import "images/3/1/2/add_self_many.png"
 
-        @import "images/3/1/2/xor_anti-interference.png"
+!!! example
+    有时会需要让某根电线穿过双灯异或门而不干扰异或门逻辑。
+    
+    设异或的两个输入分别为 $M$ 和 $N$，输出为 $Y$，则：
+    
+    $$Y = M + N$$
 
-        $Y$ 始终等于 $A$，与 $B$ 的值无关。
+    令 $M = A + B,\ N = B$ 则：
+
+    $$Y = (A + B) + B = A$$
+
+    @import "images/3/1/2/xor_anti-interference.png"
+
+    $Y$ 始终等于 $A$，与 $B$ 的值无关。
 
 !!! tip
     逻辑运算的结果也是逻辑变量，这里的乘法和加法是逻辑变量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。
@@ -408,35 +416,45 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
         @import "images/3/1/3/and_transformatio.png"
 
+##### 普通灯
+
+完整逻辑门由逻辑门和其上逻辑灯组成，普通灯是异或逻辑，输入是其上所有电线连接的所有电源；逻辑门的逻辑取决于类型，输入是其上所有逻辑灯。
+
+普通灯是异或逻辑，其上电线连接 $m$ 个电源的普通灯代数式中有 $m$ 项相加，每一项都对应一个其上电线连接的电源，如果逻辑灯输入有取反则加上 1。
+
+!!! quote
+    $$\mathrm{Lamp}(S_1,\dots,S_m;s) = \sum_{i=1}^{m} S_i + s$$
+
+    $m$ 电源输入普通灯代数式，$s$ 是逻辑灯本身状态，灭为 0，亮为 1。
+
+!!! tip
+    线异或在状态用电器发生，输入是状态用电器上全部电线连接的全部电源。
+
 ##### 与门
 
-普通灯是异或逻辑，其上有 $m$ 条电线的普通灯代数式中有 $m$ 项相加，每一项都对应一个其上电线，如果逻辑灯输入有取反则加上 1。
+与门是与逻辑，其上有 $n$ 灯的与门代数式中有 $n$ 项相乘，每一项都对应一个其上普通灯，如果逻辑门输出有取反则加上 1。
 
 !!! quote
-    $$\mathrm{Lamp}(A_1,\dots,A_m;s) = \sum_{i=1}^{m} A_i + s$$
+    $$\mathrm{AndGate}(L_1,\dots,L_n;s) = \prod_{j=1}^{n} L_j + s$$
 
-    $m$ 电线输入普通灯代数式，代数式中需要加上逻辑灯本身状态（$s$），灭灯状态为 0，亮灯状态为 1。
+    $n$ 灯输入与门代数式，$s$ 是逻辑门本身状态，灭为 0，亮为 1。
 
-与门是与逻辑，其上有 $n$ 灯与门代数式中有 $n$ 项相乘，每一项都对应一个其上普通灯，如果逻辑门输出有取反则加上 1。
-
-!!! quote
-    $$\mathrm{AndGate}(B_1,\dots,B_n;t) = \prod_{j=1}^{n} B_j + t$$
-
-    $n$ 灯输入与门代数式，代数式中需要加上逻辑门本身状态（$t$），灭门状态为 0，亮门状态为 1。
-
-将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的完整逻辑门的代数式。
+将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的完整与门的代数式。
 
 !!! quote
     设与门上第 $j$ 个普通灯代数式如下：
 
-    $$B_j = \mathrm{Lamp}(A_{j1},\dots,A_{jk_j};s_j)$$
+    $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
 
     则完整与门代数式如下：
 
-    $$\prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} A_{ji} + s_j \right) + t$$
+    $$\mathrm{FullAndGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
 
 !!! example
-    @import "images/3/1/3/and.png"
+    !!! question
+        写出下列完整与门的代数式：
+
+        @import "images/3/1/3/and.png"
 
     * $Y_1 = (A + B + 1)(A + B + C)A$
 
@@ -446,12 +464,12 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
     * $Y_4 = B(A + B + C)(A + 1)$
 
-所以如果代数式或加一后的代数式可因式分解，每一个因式里只含加法不含乘法，则其对应的逻辑可以只用一个与门实现。
+如果代数式或加一后的代数式可因式分解，每一个因式里只含加法不含乘法，则其对应的逻辑可以只用一个与门实现。
 
 !!! tip
-    既可以写成如下形式：
+    既代数式可以写成如下形式时，对应逻辑可以只用一个与门实现。
 
-    $$f = \prod_{j=1}^{n} \left(\sum_{i} A_{ji} + s_j \right) \quad \text{or} \quad f+1 = \prod_{j=1}^{n} \left(\sum_{i} A_{ji} + s_j \right)$$
+    $$f = \prod_{j=1}^{n} \left(\sum_{i} S_{ji} + s_j \right) \quad \text{or} \quad f+1 = \prod_{j=1}^{n} \left(\sum_{i} S_{ji} + s_j \right)$$
 
 能只使用一个逻辑门实现的逻辑被称为 **简单逻辑**。
 
@@ -495,54 +513,61 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
 异或门是独热逻辑，$n$ 灯异或门代数式中有 $n$ 个逻辑变量，每一个逻辑变量都对应一个其上普通灯，如果逻辑门输出有取反则加上 1。
 
-将普通灯代数式带入异或门代数式即可得到由普通灯和异或门组成的完整逻辑门的代数式。
+!!! quote
+    考虑三输入独热真值表：
 
-考虑三输入独热真值表：
+    | > | > | 输入 | 输出 |
+    | --- | --- | --- | --- |
+    | A | B | C | Y |
+    | 0 | 0 | 0 | 0 |
+    | 0 | 0 | 1 | 1 |
+    | 0 | 1 | 0 | 1 |
+    | 0 | 1 | 1 | 0 |
+    | 1 | 0 | 0 | 1 |
+    | 1 | 0 | 1 | 0 |
+    | 1 | 1 | 0 | 0 |
+    | 1 | 1 | 1 | 0 |
 
-| > | > | 输入 | 输出 |
-| --- | --- | --- | --- |
-| A | B | C | Y |
-| 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 |
-| 0 | 1 | 0 | 1 |
-| 0 | 1 | 1 | 0 |
-| 1 | 0 | 0 | 1 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 0 |
-| 1 | 1 | 1 | 0 |
+    使用最小项之和写出逻辑式：
 
-使用最小项之和写出逻辑式：
+    $$\mathrm{OneHot}(A, B, C) = \lnot A \land \lnot B \land C \oplus \lnot A \land B \land \lnot C \oplus A \land \lnot B \land \lnot C$$
 
-$$\mathrm{OneHot}(A, B, C) = \lnot A \land \lnot B \land C \oplus \lnot A \land B \land \lnot C \oplus A \land \lnot B \land \lnot C$$
+    转换为代数式：
 
-转换为代数式：
+    $$\begin{array}{lll} \mathrm{OneHot}(A, B, C) & = & (A + 1)(B + 1)C + (A + 1)B(C + 1) + A(B + 1)(C + 1) \\ & = & (AB + A + B + 1)C + \\ & & (AC + A + C + 1)B + \\ & & (BC + B + C + 1)A \\ & = & ABC + AC + BC + C + \\ & & ABC + AB + BC + B + \\ & & ABC + AB + AC + A \\ & = & ABC + A + B + C\end{array}$$
 
-$$\begin{array}{lll} \mathrm{OneHot}(A, B, C) & = & (A + 1)(B + 1)C + (A + 1)B(C + 1) + A(B + 1)(C + 1) \\ & = & (AB + A + B + 1)C + \\ & & (AC + A + C + 1)B + \\ & & (BC + B + C + 1)A \\ & = & ABC + AC + BC + C + \\ & & ABC + AB + BC + B + \\ & & ABC + AB + AC + A \\ & = & ABC + A + B + C\end{array}$$
+    !!! tip
+        这里利用了推论 $A + A = 0$，出现奇数次的项被保留，偶数次的项被消掉。
+
+    同理四输入独热的表达式为：
+
+    $$\mathrm{OneHot}(A, B, C, D) = ABC + ABD + ACD + BCD + A + B + C + D$$
+
+    !!! tip
+        证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。
+
+!!! quote
+    由上述结论推广可得：
+
+    $$\mathrm{XorGate}(L_1,\dots,L_n; s) = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} L_i + s$$
+
+    $n$ 灯输入异或门代数式，$s$ 是逻辑门本身状态，灭为 0，亮为 1。
+
+将普通灯代数式带入异或门代数式即可得到由普通灯和异或门组成的完整异或门的代数式。
+
+!!! quote
+    设异或门上第 $j$ 个普通灯代数式如下：
+
+    $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
+
+    则完整异或门代数式如下：
+
+    $$\mathrm{FullXorGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
 
 !!! tip
-    这里利用了推论 $A + A = 0$，出现奇数次的项被保留，偶数次的项被消掉。
+    同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
 
-同理四输入独热的表达式为：
-
-$$\mathrm{OneHot}(A, B, C, D) = ABC + ABD + ACD + BCD + A + B + C + D$$
-
-!!! tip
-    证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。
-
-对于 $n$ 变量独热运算，可用下方代数式表示：
-
-$$\mathrm{OneHot}(x_1,\dots,x_n) = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} x_i$$
-
-设初等对称多项式：
-
-$$e_k(x_1,\dots,x_n) = \sum_{1 \le i_1 < \cdots < i_k \le n} x_{i_1} \cdots x_{i_k}$$
-
-则：
-
-$$\mathrm{OneHot}(x_1,\dots,x_n) = \sum_{\substack{k=1 \\ k \equiv 1 \pmod{2}}}^{n} e_k(x_1,\dots,x_n)$$
-
-!!! tip
-    异或门的逻辑灯带入和与门相同，不重复书写。
+    $$f = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
 
 !!! example
     观察下方电路：
