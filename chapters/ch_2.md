@@ -560,7 +560,7 @@ $$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
 
     全异或门逻辑式如下：
 
-    $$\mathrm{FullXorGate}\Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ = \\ \mathrm{OneHot}\Big(S_{11} \oplus \cdots \oplus S_{1k_1} \oplus s_1, \cdots, S_{j1} \oplus \cdots \oplus S_{jk_j} \oplus s_j \Big) \oplus s$$
+    $$\mathrm{FullXorGate}\Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ = \\ \mathrm{OneHot}(S_{11} \oplus \cdots \oplus S_{1k_1} \oplus s_1, \cdots, S_{j1} \oplus \cdots \oplus S_{jk_j} \oplus s_j) \oplus s$$
 
     !!! tip
         将普通门逻辑式中的全部 $L_j$ 用对应普通灯逻辑式代替
@@ -571,6 +571,30 @@ $$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
     逻辑灯的输入是其上全部电线连接的全部电源状态和其本身状态，输出是逻辑灯状态；逻辑门输入是其上全部逻辑灯状态，输出是逻辑门状态。
     
     全逻辑门是由逻辑门和其上逻辑灯组成的，所以将逻辑灯的代数式代入逻辑门的代数式就可以得到全逻辑门的代数式，输入是逻辑门上逻辑灯上全部电线连接的全部电源状态和逻辑灯状态，输出是逻辑门状态。
+
+!!! example
+    !!! question
+        写出下列全与门的逻辑式：
+
+        @import "images/2/2/2/full_and.png"
+
+    * $Y_1 = \lnot (A \oplus B) \land (A \oplus B \oplus C) \land A$
+
+    * $Y_2 = \lnot ((A \oplus C) \land \lnot (A \oplus B \oplus C) \land C)$
+
+    * $Y_3 = \lnot (\lnot B \land \lnot (A \oplus B \oplus C) \land \lnot C)$
+
+    * $Y_4 = B \land (A \oplus B \oplus C) \land \lnot A$
+
+    使用 $\oplus 1$ 代替非逻辑：
+
+    * $Y_1 = (A \oplus B \oplus 1) \land (A \oplus B \oplus C) \land A$
+
+    * $Y_2 = (A \oplus C) \land (A \oplus B \oplus C \oplus 1) \land C \oplus 1$
+
+    * $Y_3 = (B \oplus 1) \land (A \oplus B \oplus C \oplus 1) \land (C \oplus 1) \oplus 1$
+
+    * $Y_4 = B \land (A \oplus B \oplus C) \land (A \oplus 1)$
 
 #### 2.2.3 故障逻辑门
 

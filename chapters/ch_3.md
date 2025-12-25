@@ -565,6 +565,28 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
     $$f = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
 
 !!! example
+    !!! question
+        写出下列全异或门的代数式：
+
+        @import "images/3/1/3/xor.png"
+
+    三灯异或门的代数式为：
+
+    $$F = XYZ + X + Y + Z$$
+
+    * $Y_1 = (A + B + 1)(A + B + C)B + (A + B + 1) + (A + B + C) + B$
+    $X = A + B + 1,\ Y = A + B + C,\ Z = B$
+
+    * $Y_2 = (B + 1)(A + B + C + 1)(C + 1) + (B + 1) + (A + B + C + 1) + (C + 1) + 1$
+    $X = B + 1,\ Y = A + B + C + 1,\ Z = C + 1$
+
+    * $Y_3 = B(A + B + C + 1)A + B + (A + B + C + 1) + A + 1$
+    $X = B,\ Y = A + B + C + 1,\ Z = A$
+
+    * $Y_4 = A(A + B + C)(A + C + 1) + A + (A + B + C) + (A + C + 1) + 1$
+    $X = A,\ Y = A + B + C,\ Z = A + C + 1$
+
+!!! example
     观察下方电路：
 
     @import "images/3/1/3/xor_to_and.png"
