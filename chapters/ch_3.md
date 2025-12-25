@@ -449,7 +449,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的完整与门的代数式。
 
 !!! quote
-    设与门上第 $j$ 个普通灯代数式如下：
+    设与门上第 $j$ 个普通灯表达式如下：
 
     $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
 
@@ -563,13 +563,13 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 将普通灯代数式带入异或门代数式即可得到由普通灯和异或门组成的完整异或门的代数式。
 
 !!! quote
-    设异或门上第 $j$ 个普通灯代数式如下：
+    设异或门上第 $j$ 个普通灯表达式如下：
 
     $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
 
     则完整异或门代数式如下：
 
-    $$\mathrm{FullXorGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
+    $$\mathrm{FullXorGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
 
 !!! tip
     同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
