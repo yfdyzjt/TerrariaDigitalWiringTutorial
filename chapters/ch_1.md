@@ -235,12 +235,48 @@ $$ (10010)_{2} = 1 \times 2 ^ 4 + 0 \times 2 ^ 3 + 0 \times 2 ^ 2 + 1 \times 2 ^
 
 #### 1.2.4 逻辑函数
 
-数字电路的基本单元是开关器件，开关器件只有“接通”和“断开”两种状态，可以使用 **逻辑变量（二值变量）** 来描述，逻辑变量只有 0 和 1 两种可能的取值，也就是一位二进制。
+##### 逻辑量
 
-函数是一种将一个集合中的每个元素（自变量）与另一个集合中的一个元素（因变量）关联起来的关系，**逻辑函数** 是研究逻辑变量之间的因果关系的函数。对于有 $n$ 个逻辑变量 $(A_1, A_2, \cdots, A_n)$ 的逻辑函数，当 $n$ 个逻辑变量取任意一组确定值后，逻辑函数 $Y = F(A_1, A_2, \cdots, A_n)$ 的值也就被唯一地确定了，显然 $Y$ 也只有 0 或 1 两种可能的取值。
+对于会变化的量，我们将其称为 **变量**；而对于维持一个值不变的量，我们将其称为 **常量**。
+
+数字电路的基本单元是开关器件，开关器件只有“接通”和“断开”两种状态，可以使用 **逻辑变量**（二值变量）来描述这种变量；对应的，对于数字电路中固定不变的量，可以使用 **逻辑常量**（二值常量）来描述这种常量。数字电路中计算、传输、表示的量都是逻辑变量或逻辑常量。
+
+逻辑变量和逻辑常量只有 0 和 1 两种可能的取值，也就是一位二进制。逻辑变量会在 0 和 1 中任意取值，而逻辑常量会固定为 0 或固定为 1。逻辑变量和逻辑常量统称为 **逻辑量**。
+
+##### 标量、向量、矩阵
+
+在数字电路中，我们不仅需要关心某一个逻辑量，也常常需要同时描述一组逻辑量，甚至多组逻辑量的组合关系。所以我们引入 **标量**、**向量**、**矩阵** 来描述这些情况。
+
+标量表示单独的逻辑量，可以是一个逻辑变量或一个逻辑常量。当我们把多个逻辑量按顺序排成一行时，就得到了向量，向量的每一个分量都是一个标量。当我们把多行矢量叠放在一起时，就得到了矩阵，矩阵的每一行都可以看作一个长度一样的矢量。
+
+!!! tip
+    对于标量，使用普通小写字母表示；
+
+    !!! example
+        $$x = 0$$
+        
+        $$y = 1$$
+
+    对于向量，使用粗体小写字母表示；
+
+    !!! example
+        $$\mathbf{x} = (x_1, x_2, x_3)$$
+
+        $$\mathbf{y} = (0, 1, 1)$$
+
+    对于矩阵，使用粗体大写字母表示；
+
+    !!! example
+        $$\mathbf{X} = \begin{pmatrix} x_{11} & x_{12} & x_{13} \\ x_{21} & x_{22} & x_{23} \end{pmatrix}$$
+
+        $$\mathbf{Y} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}$$
+
+##### 逻辑函数
+
+函数是一种将一个集合中的每个元素（自变量）与另一个集合中的一个元素（因变量）关联起来的关系，**逻辑函数** 是研究逻辑量之间的因果关系的函数。对于有 $n$ 个逻辑量 $(a_1, a_2, \cdots, a_n)$ 的逻辑函数，当 $n$ 个逻辑量取任意一组确定值后，逻辑函数 $y = f(a_1, a_2, \cdots, a_n)$ 的值也就被唯一地确定了，显然 $y$ 也只有 0 或 1 两种可能的取值。
 
 !!! example
-    存在一个两变量的逻辑函数 $Y = F(A, B)$ ，对于二位二进制，存在 $2 ^ 2 = 4$ 个不同的取值，所以对于变量 $A$，$B$ 有 4 种可能的取值：00，01，10，11。令 $F(0, 0) = 0$， $F(0, 1) = 0$， $F(1, 0) = 0$， $F(1, 1) = 1$ ，可得 $A$，$B$ 与 $Y$ 的完整映射关系。
+    存在一个两变量的逻辑函数 $y = f(a, b)$ ，对于二位二进制，存在 $2 ^ 2 = 4$ 个不同的取值，所以对于变量 $a$，$b$ 有 4 种可能的取值：00，01，10，11。令 $f(0, 0) = 0$， $f(0, 1) = 0$， $f(1, 0) = 0$， $f(1, 1) = 1$ ，可得 $a$，$b$ 与 $y$ 的完整映射关系。
 
     输入为 00 时，可知输出为 0；
     输入为 01 时，可知输出为 0；
@@ -256,7 +292,7 @@ $$ (10010)_{2} = 1 \times 2 ^ 4 + 0 \times 2 ^ 3 + 0 \times 2 ^ 2 + 1 \times 2 ^
 !!! example
     | > | 输入 | 输出 |
     | --- | --- | --- |
-    | A | B | Y |
+    | a | b | y |
     | 0 | 0 | 0 |
     | 0 | 1 | 0 |
     | 1 | 0 | 0 |
@@ -269,25 +305,25 @@ $$ (10010)_{2} = 1 \times 2 ^ 4 + 0 \times 2 ^ 3 + 0 \times 2 ^ 2 + 1 \times 2 ^
 
 对于 $n$ 个输入的逻辑函数，会有 $2 ^ n$ 个可能的输入取值，和与之对应的输出，真值表会有 $n + 1$ 列， $2 ^ n$ 行。
 
-有时候部分输入情况是不存在或不需要考虑的，此时我们可以省略这些情况对应的行，或者将对应输出用 **X** 表示。
+有时候部分输入情况是不存在或不需要考虑的，此时我们可以省略这些情况对应的行，或者将对应输出用 x 表示。
 
 !!! example
     独热码是一种全部位中只有一位为 1 的二进制编码，所以对于一个输入为独热码的逻辑函数来说，非独热码的输入情况是不需要考虑的。
 
-    | A | B | C | Y |
+    | a | b | c | y |
     | --- | --- | --- | --- |
-    | 0 | 0 | 0 | X |
+    | 0 | 0 | 0 | x |
     | 0 | 0 | 1 | 0 |
     | 0 | 1 | 0 | 0 |
-    | 0 | 1 | 1 | X |
+    | 0 | 1 | 1 | x |
     | 1 | 0 | 0 | 1 |
-    | 1 | 0 | 1 | X |
-    | 1 | 1 | 0 | X |
-    | 1 | 1 | 1 | X |
+    | 1 | 0 | 1 | x |
+    | 1 | 1 | 0 | x |
+    | 1 | 1 | 1 | x |
 
     也可以表示为：
 
-    | A | B | C | Y |
+    | a | b | c | y |
     | --- | --- | --- | --- |
     | 0 | 0 | 1 | 0 |
     | 0 | 1 | 0 | 0 |
@@ -308,16 +344,16 @@ $$ (10010)_{2} = 1 \times 2 ^ 4 + 0 \times 2 ^ 3 + 0 \times 2 ^ 2 + 1 \times 2 ^
 
 两个变量与运算的逻辑表达式为：
 
-$$A \land B$$
+$$a \land b$$
 
 !!! info
-    读作 A 与 B。
+    读作 a 与 b。
 
 两个变量与运算的真值表为：
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
@@ -325,12 +361,12 @@ $$A \land B$$
 
 $n$ 个变量与运算的逻辑表达式为：
 
-$$A_1 \land A_2 \land \cdots \land A_n$$
+$$a_1 \land a_2 \land \cdots \land a_n$$
 
 !!! tip
     与满足结合律，多个变量与和多个变量两两与等价。
 
-    $$A_1 \land A_2 \land \cdots \land A_n = (( \cdots ((A_1 \land A_2) \land A_3) \land \cdots) \land A_n)$$
+    $$a_1 \land a_2 \land \cdots \land a_n = (( \cdots ((a_1 \land a_2) \land a_3) \land \cdots) \land a_n)$$
 
 ##### 异或（XOR）
 
@@ -343,16 +379,16 @@ $$A_1 \land A_2 \land \cdots \land A_n$$
 
 两个变量异或运算的逻辑表达式为：
 
-$$A \oplus B$$
+$$a \oplus b$$
 
 !!! info
-    读作 A 异或 B。
+    读作 a 异或 b。
 
 两个变量异或运算的真值表为：
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
@@ -360,12 +396,12 @@ $$A \oplus B$$
 
 $n$ 个变量异或运算的逻辑表达式为：
 
-$$A_1 \oplus A_2 \oplus \cdots \oplus A_n$$
+$$a_1 \oplus a_2 \oplus \cdots \oplus a_n$$
 
 !!! tip
     异或满足结合律，多个变量异或和多个变量两两异或等价。
 
-    $$A_1 \oplus A_2 \oplus \cdots \oplus A_n = (( \cdots ((A_1 \oplus A_2) \oplus A_3) \oplus \cdots) \oplus A_n)$$
+    $$a_1 \oplus a_2 \oplus \cdots \oplus a_n = (( \cdots ((a_1 \oplus a_2) \oplus a_3) \oplus \cdots) \oplus a_n)$$
 
 ##### 非（NOT）
 
@@ -378,40 +414,40 @@ $$A_1 \oplus A_2 \oplus \cdots \oplus A_n$$
 
 非运算的逻辑表达式为：
 
-$$\lnot A$$
+$$\lnot a$$
 
 !!! info
-    读作 A 非，非运算只能有一个逻辑变量输入。
+    读作 a 非，非运算只能有一个逻辑量输入。
 
 非运算的真值表为：
 
 | 输入 | 输出 |
 | --- | --- |
-| A | Y |
+| a | y |
 | 0 | 1 |
 | 1 | 0 |
 
 #### 1.2.7 逻辑表达式
 
-上一节介绍了与、异或、非三种基本逻辑运算，以及对应的运算符号“ $\land$ ”、“ $\oplus$ ”、“ $\lnot$ ”，它们统称为 **逻辑运算符**。由逻辑变量和逻辑运算符组成的表达式被称为 **逻辑函数表达式** 或 **逻辑表达式**，简称为 **逻辑式**。它是描述逻辑函数与逻辑变量之间关系的表达式，逻辑式和真值表都是描述逻辑函数的重要工具。
+上一节介绍了与、异或、非三种基本逻辑运算，以及对应的运算符号“ $\land$ ”、“ $\oplus$ ”、“ $\lnot$ ”，它们统称为 **逻辑运算符**。由逻辑量和逻辑运算符组成的表达式被称为 **逻辑函数表达式** 或 **逻辑表达式**，简称为 **逻辑式**。它是描述逻辑函数与逻辑量之间关系的表达式，逻辑式和真值表都是描述逻辑函数的重要工具。
 
 有一些较为复杂的逻辑式也是由基本运算符组合而成的。在逻辑式中，相同运算符的运算次序是 **先左后右**，而不同运算符的运算次序是 **非 > 与 > 异或**，若有括号，则 **先进行括号内运算**。
 
 !!! example
-    逻辑式 $A \land \lnot B \land \lnot C \oplus \lnot A \land B \land \lnot C \oplus \lnot A \land \lnot B \land C$ ，读作 A 与 B 非 与 C 非 异或 A 非 与 B 与 C 非 异或 A 非 与 B 非 与 C。计算时先计算六个非运算，然后再计算六个与运算，最后再计算两个异或运算。
+    逻辑式 $a \land \lnot b \land \lnot c \oplus \lnot a \land b \land \lnot c \oplus \lnot a \land \lnot b \land c$ ，读作 a 与 b 非 与 c 非 异或 a 非 与 b 与 c 非 异或 a 非 与 b 非 与 c。计算时先计算六个非运算，然后再计算六个与运算，最后再计算两个异或运算。
 
 ##### 逻辑等价
 
 设有两个逻辑函数：
 
-$$F_1(A_1, A_2, \cdots, A_n)$$
+$$f_1(a_1, a_2, \cdots, a_n)$$
 
-$$F_2(A_1, A_2, \cdots, A_n)$$
+$$f_2(a_1, a_2, \cdots, a_n)$$
 
-如果对于 $A_1$ ~ $A_n$ 的任何一组取值使 $F_1$ 和 $F_2$ 具有相同的值，则称这两个逻辑函数 **相等** 或 **等价**，既 $F_1 = F_2$。相等的逻辑函数一定有相同的真值表，反之亦然。
+如果对于 $a_1$ ~ $a_n$ 的任何一组取值使 $f_1$ 和 $f_2$ 具有相同的值，则称这两个逻辑函数 **相等** 或 **等价**，既 $f_1 = f_2$。相等的逻辑函数一定有相同的真值表，反之亦然。
 
 !!! example
-    对于逻辑表达式 $\lnot (\lnot A \land \lnot B)$ ：
+    对于逻辑表达式 $\lnot (\lnot a \land \lnot b)$ ：
 
     输入 00 时 $\lnot (\lnot 0 \land \lnot 0) = \lnot (1 \land 1) = \lnot 1 = 0$ ；
     输入 01 时 $\lnot (\lnot 0 \land \lnot 1) = \lnot (1 \land 0) = \lnot 0 = 1$ ；
@@ -432,16 +468,16 @@ $$F_2(A_1, A_2, \cdots, A_n)$$
 
 两个变量的或运算的逻辑表达式为：
 
-$$A \lor B$$
+$$a \lor b$$
 
 !!! info
-    读作 A 或 B。
+    读作 a 或 b。
 
 两个变量或运算的真值表为：
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
@@ -449,17 +485,17 @@ $$A \lor B$$
 
 $n$ 个变量或运算的逻辑表达式为：
 
-$$A_1 \lor A_2 \lor \cdots \lor A_n$$
+$$a_1 \lor a_2 \lor \cdots \lor a_n$$
 
 !!! tip
     或满足结合律，多个变量或和多个变量两两或等价。
 
-    $$A_1 \lor A_2 \lor \cdots \lor A_n = (( \cdots ((A_1 \lor A_2) \lor A_3) \lor \cdots) \lor A_n)$$
+    $$a_1 \lor a_2 \lor \cdots \lor a_n = (( \cdots ((a_1 \lor a_2) \lor a_3) \lor \cdots) \lor a_n)$$
 
 !!! info
     或运算的逻辑表达式也可以用与、异或、非来表示：
 
-    $$A \lor B = \lnot (\lnot A \land \lnot B)$$
+    $$a \lor b = \lnot (\lnot a \land \lnot b)$$
 
     两者等价的证明已于上一节完成。
 
@@ -474,16 +510,16 @@ $$A_1 \lor A_2 \lor \cdots \lor A_n$$
 
 两个变量独热运算的逻辑表达式为：
 
-$$\mathrm{OneHot}(A, B)$$
+$$\mathrm{OneHot}(a, b)$$
 
 !!! info
-    读作独热 A, B。
+    读作独热 a, b。
 
 两个变量独热运算的真值表为：
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
@@ -492,7 +528,7 @@ $$\mathrm{OneHot}(A, B)$$
 !!! tip 
     可以发现两个变量独热运算和异或运算输出完全相同：
     
-    $$\mathrm{OneHot}(A, B) = A \oplus B$$
+    $$\mathrm{OneHot}(a, b) = a \oplus b$$
     
     但是当输入变量在三个或以上时，独热运算和异或运算不同。
 
@@ -501,7 +537,7 @@ $$\mathrm{OneHot}(A, B)$$
 
         | > | > | 输入 | 输出 |
         | --- | --- | --- | --- |
-        | A | B | C | Y |
+        | a | b | c | y |
         | 0 | 0 | 0 | 0 |
         | 0 | 0 | 1 | 1 |
         | 0 | 1 | 0 | 1 |
@@ -515,7 +551,7 @@ $$\mathrm{OneHot}(A, B)$$
 
         | > | > | 输入 | 输出 |
         | --- | --- | --- | --- |
-        | A | B | C | Y |
+        | a | b | c | y |
         | 0 | 0 | 0 | 0 |
         | 0 | 0 | 1 | 1 |
         | 0 | 1 | 0 | 1 |
@@ -529,12 +565,12 @@ $$\mathrm{OneHot}(A, B)$$
 
 $n$ 个变量独热运算的逻辑表达式为：
 
-$$\mathrm{OneHot}(A_1, A_2, \cdots , A_n)$$
+$$\mathrm{OneHot}(a_1, a_2, \cdots , a_n)$$
 
 !!! tip
     独热不满足结合律，多个变量独热和多个变量两两独热不等价。多个变量独热运算需要同时考虑所有输入，不能两两分别运算。
 
-    $$\mathrm{OneHot}(A_1, A_2, \cdots, A_n) \neq \\ \mathrm{OneHot}(\mathrm{OneHot}( \cdots \mathrm{OneHot}(\mathrm{OneHot}(A_1, A_2), A_3), \cdots A_{n - 1}), A_n)$$
+    $$\mathrm{OneHot}(a_1, a_2, \cdots, a_n) \neq \\ \mathrm{OneHot}(\mathrm{OneHot}( \cdots \mathrm{OneHot}(\mathrm{OneHot}(a_1, a_2), a_3), \cdots a_{n - 1}), a_n)$$
 
     !!! example
         上述三变量输入独热和异或的例子中，全部输入为 1 的情况独热和异或输出不同（两两异或与两两独热输出相同）。
@@ -545,16 +581,16 @@ $$\mathrm{OneHot}(A_1, A_2, \cdots , A_n)$$
 
         $\mathrm{OneHot}(1, 1, 1) \neq \mathrm{OneHot}(\mathrm{OneHot}(1, 1), 1)$
 
-        $\mathrm{OneHot}(A_1, A_2, A_3) \neq \mathrm{OneHot}(\mathrm{OneHot}(A_1, A_2), A_3)$
+        $\mathrm{OneHot}(a_1, a_2, a_3) \neq \mathrm{OneHot}(\mathrm{OneHot}(a_1, a_2), a_3)$
 
 !!! info
     独热运算的逻辑表达式也可以用与、异或、非来表示：
 
-    两个变量：$A \oplus B$；
+    两个变量：$a \oplus b$；
 
-    三个变量：$A \land B \land C \oplus A \oplus B \oplus C$；
+    三个变量：$a \land b \land c \oplus a \oplus b \oplus c$；
 
-    四个变量：$A \land B \land C \oplus A \land B \land D \oplus A \land C \land D \oplus B \land C \land D \oplus A \oplus B \oplus C \oplus D$；
+    四个变量：$a \land b \land c \oplus a \land b \land d \oplus a \land c \land d \oplus b \land c \land d \oplus a \oplus b \oplus c \oplus d$；
 
     ……
 
@@ -571,13 +607,13 @@ $$\mathrm{OneHot}(A_1, A_2, \cdots , A_n)$$
 
 | > | 运算 | 两个变量逻辑表达式 | $n$ 个变量逻辑表达式 |
 | --- | --- | --- | --- |
-| 与 | AND | $A \land B$ | $A_1 \land A_2 \land \cdots \land A_n$ |
-| 与非 | NAND | $\lnot (A \land B)$ | $\lnot (A_1 \land A_2 \land \cdots \land A_n)$ 
-| 或 | OR | $A \lor B$ | $A_1 \lor A_2 \lor \cdots \lor A_n$ |
-| 或非 | NOR | $\lnot (A \lor B)$ | $\lnot (A_1 \lor A_2 \lor \cdots \lor A_n)$ |
-| 异或 | XOR | $A \oplus B$ | $A_1 \oplus A_2 \oplus \cdots \oplus A_n$ |
-| 同或 | XNOR |  $\lnot (A \oplus B)$ | $\lnot (A_1 \oplus A_2 \oplus \cdots \oplus A_n)$ |
-| 独热 | One-hot | $\mathrm{OneHot}(A, B)$ | $\mathrm{OneHot}(A_1, A_2, \cdots, A_n)$ |
-| 独热非 | Not One-hot | $\lnot \mathrm{OneHot}(A, B)$ | $\lnot \mathrm{OneHot}(A_1, A_2, \cdots, A_n)$ |
+| 与 | AND | $a \land b$ | $a_1 \land a_2 \land \cdots \land a_n$ |
+| 与非 | NAND | $\lnot (a \land b)$ | $\lnot (a_1 \land a_2 \land \cdots \land a_n)$ 
+| 或 | OR | $a \lor b$ | $a_1 \lor a_2 \lor \cdots \lor a_n$ |
+| 或非 | NOR | $\lnot (a \lor b)$ | $\lnot (a_1 \lor a_2 \lor \cdots \lor a_n)$ |
+| 异或 | XOR | $a \oplus b$ | $a_1 \oplus a_2 \oplus \cdots \oplus a_n$ |
+| 同或 | XNOR |  $\lnot (a \oplus b)$ | $\lnot (a_1 \oplus a_2 \oplus \cdots \oplus a_n)$ |
+| 独热 | One-hot | $\mathrm{Onehot}(a, b)$ | $\mathrm{Onehot}(a_1, a_2, \cdots, a_n)$ |
+| 独热非 | Not One-hot | $\lnot \mathrm{OneHot}(a, b)$ | $\lnot \mathrm{OneHot}(a_1, a_2, \cdots, a_n)$ |
 
 与非、或非、同或、独热非运算并没有引入新的运算符，它们的真值表可自行推导。

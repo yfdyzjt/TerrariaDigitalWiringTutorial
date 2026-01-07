@@ -1,4 +1,4 @@
-## 第三章 电路元件
+## 第三章 逻辑电路
 
 ### 3.1 组合逻辑
 
@@ -14,25 +14,25 @@
 
 ##### 非
 
-$$Y = \lnot A$$
+$$y = \lnot a$$
 
 @import "images/3/1/1/not.png"
 
 ##### 异或
 
-$$Y = A \oplus B$$
+$$y = a \oplus b$$
 
 @import "images/3/1/1/xor.png"
 
 ##### 与
 
-$$Y = A \land B$$
+$$y = a \land b$$
 
 @import "images/3/1/1/and.png"
 
 ##### 独热
 
-$$Y = \mathrm{OneHot}(A, B)$$
+$$y = \mathrm{OneHot}(a, b)$$
 
 @import "images/3/1/1/one-hot.png"
 
@@ -48,7 +48,7 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
 | > | 输入 | > | > | > | > | > | 输出 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| A | B | $A < B$ | $A > B$ | $A <= B$ | $A >= B$ | $A == B$ | $A\ != B$ |
+| a | b | $a < b$ | $a > b$ | $a <= b$ | $a >= b$ | $a == b$ | $a\ != b$ |
 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 0 |
 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 |
 | 1 | 0 | 0 | 1 | 1 | 0 | 0 | 1 |
@@ -57,40 +57,40 @@ $$Y = \mathrm{OneHot}(A, B)$$
 !!! info
     与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：
 
-    $$A_1 \land A_2 \land \cdots \land A_n = \left\{\begin{array}{ll}1 & \textrm{当 } A_1 = A_2 = \cdots = A_n = 1 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$a_1 \land a_2 \land \cdots \land a_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
 
     !!! example
         @import "images/3/1/2/and_all_one.png"
 
-        只有在输入 A1 ~ A4 全为 1 时，输出才为 1；其余情况输出 0。
+        只有在输入 $a_1$ ~ $a_4$ 全为 1 时，输出才为 1；其余情况输出 0。
 
     如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出 1，否则输出 0：
 
-    $$\lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n = \left\{\begin{array}{ll}1 & \textrm{当 } A_1 = A_2 = \cdots = A_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$\lnot a_1 \land \lnot a_2 \land \cdots \land \lnot a_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
 
     !!! example
         @import "images/3/1/2/and_all_zero.png"
 
-        只有在输入 A1 ~ A4 全为 0 时，输出才为 1；其余情况输出 0。
+        只有在输入 $a_1$ ~ $a_4$ 全为 0 时，输出才为 1；其余情况输出 0。
 
     若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为 0”时输出 1，其余情况输出 0：
 
-    $$A_1 \land A_2 \land \cdots \land A_m \land \lnot B_1 \land \lnot B_2 \land \cdots \land \lnot B_n = \left\{\begin{array}{ll}1 & \textrm{当 } A_1 = A_2 = \cdots = A_n = 1 \textrm{ 且} \\ & B_1 = B_2 = \cdots = B_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$a_1 \land a_2 \land \cdots \land a_m \land \lnot b_1 \land \lnot b_2 \land \cdots \land \lnot b_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 且} \\ & b_1 = b_2 = \cdots = b_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
 
     !!! example
         @import "images/3/1/2/and_half_one.png"
 
-        只有在输入 A1 ~ A2 全为 1 且 B1 ~ B2 全为 0 时，输出才为 1；其余情况输出 0。
+        只有在输入 $a_1$ ~ $a_2$ 全为 1 且 $a_1$ ~ $a_2$ 全为 0 时，输出才为 1；其余情况输出 0。
 
     这种只在真值表中某一行输出为 1 的逻辑表达式称为 **最小项**。
 
     !!! example
-        对于三输入逻辑函数，若只希望在 $A=0,\ B=1,\ C=1$ 时输出 1，可以使用最小项 $\lnot A \land B \land C$，该表达式仅在这一输入组合下输出 1。
+        对于三输入逻辑函数，若只希望在 $a = 0,\ b = 1,\ c = 1$ 时输出 1，可以使用最小项 $\lnot a \land b \land c$，该表达式仅在这一输入组合下输出 1。
 
         !!! quote
             @import "images/3/1/2/and_lut.png"
 
-            只有在输入 $A=0, B=1, C=1$ 时，输出才为 1；其余情况输出 0。
+            只有在输入 $a = 0,\ b = 1,\ c = 1$ 时，输出才为 1；其余情况输出 0。
 
     最小项中每个输入逻辑变量都会出现，且只会出现一次；每个变量在最小项中都有“取反”和“不取反”两种情况。因此对于 $n$ 个变量，一共有 $2^n$ 个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为 1。
 
@@ -99,15 +99,15 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
         | > | > | 输入 | 输出为 1 最小项 |
         | --- | --- | --- | --- |
-        | A | B | C | Y |
-        | 0 | 0 | 0 | $\lnot A \land \lnot B \land \lnot C$ |
-        | 0 | 0 | 1 | $\lnot A \land \lnot B \land C$ |
-        | 0 | 1 | 0 | $\lnot A \land B \land \lnot C$ |
-        | 0 | 1 | 1 | $\lnot A \land B \land C$ |
-        | 1 | 0 | 0 | $A \land \lnot B \land \lnot C$ |
-        | 1 | 0 | 1 | $A \land \lnot B \land C$ |
-        | 1 | 1 | 0 | $A \land B \land \lnot C$ |
-        | 1 | 1 | 1 | $A \land B \land C$ |
+        | a | b | c | y |
+        | 0 | 0 | 0 | $\lnot a \land \lnot b \land \lnot c$ |
+        | 0 | 0 | 1 | $\lnot a \land \lnot b \land c$ |
+        | 0 | 1 | 0 | $\lnot a \land b \land \lnot c$ |
+        | 0 | 1 | 1 | $\lnot a \land b \land c$ |
+        | 1 | 0 | 0 | $a \land \lnot b \land \lnot c$ |
+        | 1 | 0 | 1 | $a \land \lnot b \land c$ |
+        | 1 | 1 | 0 | $a \land b \land \lnot c$ |
+        | 1 | 1 | 1 | $a \land b \land c$ |
 
         可以看到真值表中某变量为 0，对应最小项中该变量取反；为 1，则不取反。
 
@@ -123,7 +123,7 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
         | > | > | 输入 | 输出 |
         | --- | --- | --- | --- |
-        | A | B | C | Y |
+        | a | b | c | y |
         | 0 | 0 | 0 | 0 |
         | 0 | 0 | 1 | 0 |
         | 0 | 1 | 0 | 0 |
@@ -135,7 +135,7 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
         其逻辑表达式可写为：
         
-        $$\lnot A \land B \land C \oplus A \land \lnot B \land C \oplus A \land B \land \lnot C \oplus A \land B \land C$$
+        $$\lnot a \land b \land c \oplus a \land \lnot b \land c \oplus a \land b \land \lnot c \oplus a \land b \land c$$
 
         对应四个输出为 1 的最小项之和。
 
@@ -148,12 +148,12 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
 | 运算 | 记号 | 逻辑表达式 |
 | --- | --- | --- |
-| 小于 | $A < B$ | $\lnot A \land B$ |
-| 大于等于 | $A >= B$ | $\lnot (\lnot A \land B)$ |
-| 大于 | $A > B$ | $A \land \lnot B$ |
-| 小于等于 | $A <= B$ | $\lnot (A \land \lnot B)$ |
-| 不等于 | $A\ != B$ | $A \oplus B$ |
-| 等于 | $A == B$ | $\lnot (A \oplus B)$ |
+| 小于 | $a < b$ | $\lnot a \land b$ |
+| 大于等于 | $a >= b$ | $\lnot (\lnot a \land b)$ |
+| 大于 | $a > b$ | $a \land \lnot b$ |
+| 小于等于 | $a <= b$ | $\lnot (a \land \lnot b)$ |
+| 不等于 | $a\ != b$ | $a \oplus b$ |
+| 等于 | $a == b$ | $\lnot (a \oplus b)$ |
 
 @import "images/3/1/2/compare.png"
 
@@ -170,22 +170,22 @@ $$Y = \mathrm{OneHot}(A, B)$$
 
 两个变量乘运算的逻辑表达式为：
 
-$$A \cdot B$$
+$$a \cdot b$$
 
 !!! info
-    读作 A 乘 B。
+    读作 a 乘 b。
 
 或者简写为：
 
-$$AB$$
+$$ab$$
 
 $n$ 个变量乘运算的逻辑表达式为：
 
-$$A_1 \cdot A_2 \cdot \cdots \cdot A_n$$
+$$a_1 \cdot a_2 \cdot \cdots \cdot a_n$$
 
 或者简写为：
 
-$$A_1 A_2 \cdots A_n$$
+$$a_1 a_2 \cdots a_n$$
 
 由乘法关系：
 
@@ -198,7 +198,7 @@ $1 \cdot 1 = 1$
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
@@ -207,26 +207,26 @@ $1 \cdot 1 = 1$
 !!! tip
     可以发现与运算就是乘法运算。
 
-    $$A \cdot B = A \land B$$
+    $$a \cdot b = a \land b$$
 
     @import "images/3/1/2/mul.png"
 
 !!! info
     任何数乘以 0 等于 0，任何数乘以 1 等于其本身。
 
-    $$0 \cdot A = 0$$
+    $$0 \cdot a = 0$$
 
-    $$1 \cdot A = A$$
+    $$1 \cdot a = a$$
     
     @import "images/3/1/2/mul_0_1.png"
 
     任何数乘以本身等于其本身。
 
-    $$A \cdot A = A$$
+    $$a \cdot a = a$$
 
     易得：
 
-    $$A \cdot A \cdot \cdots \cdot A = A$$
+    $$a \cdot a \cdot \cdots \cdot a = a$$
 
     !!! tip
         证明可通过观察真值表完成。
@@ -237,19 +237,19 @@ $1 \cdot 1 = 1$
 
 两个变量加运算的逻辑表达式为：
 
-$$A + B$$
+$$a + b$$
 
 !!! info
-    读作 A 加 B。
+    读作 a 加 b。
 
 $n$ 个变量加运算的逻辑表达式为：
 
-$$A_1 + A_2 + \cdots + A_n$$
+$$a_1 + a_2 + \cdots + a_n$$
 
 !!! question
     $$1 + 1 = \ ?$$
 
-    如果是在实数域，我们可以很容易的说出 $1 + 1 = 2$ ，但是在逻辑变量中并没有 $2$。实际上，在逻辑运算中 $1 + 1 = 0$。
+    如果是在实数域，我们可以很容易的说出 $1 + 1 = 2$ ，但是在逻辑量中并没有 $2$。实际上，在逻辑运算中 $1 + 1 = 0$。
 
     我们可以用两种方式理解这个结果：
 
@@ -269,7 +269,7 @@ $1 + 1 = 0$
 
 | > | 输入 | 输出 |
 | --- | --- | --- |
-| A | B | Y |
+| a | b | y |
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
@@ -278,21 +278,21 @@ $1 + 1 = 0$
 !!! tip
     可以发现异或运算就是加法运算。
 
-    $$A + B = A \oplus B$$
+    $$a + b = a \oplus b$$
 
     @import "images/3/1/2/add.png"
 
     !!! tip
         双输入异或和独热等价，为便于理解，图中包括使用双灯异或门实现的异或逻辑。
 
-        $$A \oplus B = \mathrm{OneHot}(A, B)$$
+        $$a \oplus b = \mathrm{OneHot}(a, b)$$
 
 !!! info
     任何数加 0 等于其本身，任何数加 1 等于其本身的非。
 
-    $$A + 0 = A$$
+    $$a + 0 = a$$
 
-    $$A + 1 = \lnot A$$
+    $$a + 1 = \lnot a$$
 
     @import "images/3/1/2/add_0_1.png"
 
@@ -301,11 +301,11 @@ $1 + 1 = 0$
 
     任何数加本身等于 0。
 
-    $$A + A = 0$$
+    $$a + a = 0$$
 
     易得：
 
-    $$\underbrace{A + A + \cdots + A}_{n} = \begin{cases} 0, & n = 2k, \\[4pt] A, & n = 2k+1, \end{cases} \qquad k \in \mathbb{N}.$$
+    $$\underbrace{a + a + \cdots + a}_{n} = \begin{cases} 0, & n = 2k, \\[4pt] a, & n = 2k+1, \end{cases} \qquad k \in \mathbb{n}.$$
 
     !!! tip
         证明可通过观察真值表完成。
@@ -318,13 +318,13 @@ $1 + 1 = 0$
     @import "images/3/1/2/add_self_many.png"
 
 !!! tip
-    逻辑运算的结果也是逻辑变量，这里的乘法和加法是逻辑变量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。
+    逻辑运算的结果也是逻辑量，这里的乘法和加法是逻辑量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。
 
-    $$Y = (A \cdot B) \bmod 2$$
+    $$y = (a \cdot b) \bmod 2$$
 
-    $$Y = (A + B) \bmod 2$$
+    $$y = (a + b) \bmod 2$$
 
-    由于逻辑变量和逻辑运算都在 $GF(2)$ 上，所以可以省略 $\bmod \ 2$。
+    由于逻辑量和逻辑运算都在 $GF(2)$ 上，所以可以省略 $\bmod \ 2$。
 
 观察上述数轴可以发现，从一个数出发，向左或向右前进相同距离的结果是一样的。
 
@@ -332,14 +332,14 @@ $$\cdots \xrightleftharpoons[\,-1\,]{\,+1\,} 1 \xrightleftharpoons[\,-1\,]{\,+1\
 
 所以可以得出结论：
 
-$$A + B = A - B$$
+$$a + b = a - b$$
 
 也就是说，在逻辑运算中，**加减等价**。
 
 !!! info
-    令 $A = 0$，可得出以下推论：
+    令 $a = 0$，可得出以下推论：
 
-    $$B = -B$$
+    $$b = -b$$
 
     !!! tip
         取反指非运算，并不是取相反数。
@@ -350,27 +350,27 @@ $$A + B = A - B$$
 
 加法和乘法满足交换律：
 
-$$A + B = B + A$$
+$$a + b = b + a$$
 
-$$A \cdot B = B \cdot A$$
+$$a \cdot b = b \cdot a$$
 
 !!! example
     @import "images/3/1/3/commutativity.png"
 
 加法和乘法满足结合律：
 
-$$A + (B + C) = (A + B) + C$$
+$$a + (b + c) = (a + b) + c$$
 
-$$A \cdot (B \cdot C) = (A \cdot B) \cdot C$$
+$$a \cdot (b \cdot c) = (a \cdot b) \cdot c$$
 
 !!! example
     @import "images/3/1/3/associativity.png"
 
 加法不满足分配律，乘法满足分配律：
 
-$$A + B \cdot C \neq (A + B) \cdot (A + C)$$
+$$a + b \cdot c \neq (a + b) \cdot (a + c)$$
 
-$$A \cdot (B + C) = A \cdot B + A \cdot C$$
+$$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
 !!! example
     @import "images/3/1/3/distributivity.png"
@@ -381,20 +381,20 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
     !!! question
         证明：任何数乘以本身的非等于 0。
 
-        $$A \cdot \lnot A = 0$$
+        $$a \cdot \lnot a = 0$$
 
     !!! quote
-        $$\begin{array}{lll} A \cdot \lnot A & = & A \cdot (A + 1) \\ & = & A \cdot A + A \\ & = & A + A \\ & = & 0 \end{array}$$
+        $$\begin{array}{lll} a \cdot \lnot a & = & a \cdot (a + 1) \\ & = & a \cdot a + a \\ & = & a + a \\ & = & 0 \end{array}$$
 
     @import "images/3/1/3/mul_self_not.png"
 
 !!! example
     !!! question
         证明：
-        $$A \land B = (\lnot A \oplus B) \land B$$
+        $$a \land b = (\lnot a \oplus b) \land b$$
 
     !!! quote
-        $$\begin{array}{lll} (\lnot A \oplus B) \land B & = & (A + 1 + B) \cdot B \\ & = & A \cdot B + B + B \cdot B \\ & = & A \cdot B + B + B \\ & = & A \cdot B\end{array}$$
+        $$\begin{array}{lll} (\lnot a \oplus b) \land b & = & (a + 1 + b) \cdot b \\ & = & a \cdot b + b + b \cdot b \\ & = & a \cdot b + b + b \\ & = & a \cdot b\end{array}$$
 
     !!! tip
         有时会需要让与门上某些电线从特定逻辑灯引出，这时可以使用这个技巧重叠电线。
@@ -406,44 +406,44 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 普通灯是异或逻辑（线异或），输入是其上所有电线连接的所有电源状态和普通灯初始状态，输出是普通灯状态。其上电线连接 $m$ 个电源的普通灯代数式中有 $m$ 项相加，每一项都对应一个其上电线连接的电源，然后再加上普通灯初始状态，灭灯为 0，亮灯为 1。
 
 !!! quote
-    $$\mathrm{Lamp}(S_1,\dots,S_m;s) = \sum_{i=1}^{m} S_i + s$$
+    $$\mathrm{Lamp}(s_1,\dots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
 
-    $m$ 电源输入的普通灯代数式，$s$ 是普通灯本身状态，灭为 0，亮为 1。
+    $m$ 电源输入的普通灯代数式，$l_0$ 是普通灯本身状态，灭为 0，亮为 1。
 
 !!! example
     有时会需要让某根电线穿过双灯异或门而不干扰异或门逻辑。
     
-    设异或的两个输入分别为 $M$ 和 $N$，输出为 $Y$，则：
+    设异或的两个输入分别为 $m$ 和 $n$，输出为 $y$，则：
     
-    $$Y = M + N$$
+    $$y = m + n$$
 
-    令 $M = A + B,\ N = B$ 则：
+    令 $m = a + b,\ n = b$ 则：
 
-    $$Y = (A + B) + B = A$$
+    $$y = (a + b) + b = a$$
 
     @import "images/3/1/3/xor_anti-interference.png"
 
-    $Y$ 始终等于 $A$，与 $B$ 的值无关。
+    $y$ 始终等于 $a$，与 $b$ 的值无关。
 
 ##### 与门
 
 与门是与逻辑，输入是其上所有普通灯状态，输出是与门状态，输入输出间关系满足与逻辑。其上有 $n$ 个灯的与门代数式中有 $n$ 项相乘，每一项都对应一个其上普通灯。当与门状态与输出用电器相反时，完整表达式会在与门表达式的基础上加 1 取反。
 
 !!! quote
-    $$\mathrm{AndGate}(L_1,\dots,L_n;s) = \prod_{j=1}^{n} L_j + s$$
+    $$\mathrm{AndGate}(l_1,\dots,l_n;g_0) = \prod_{j=1}^{n} l_j + g_0$$
 
-    $n$ 灯输入与门代数式，$s$ 是逻辑门本身状态和输出用电器状态差，灭为 0，亮为 1。
+    $n$ 灯输入与门代数式，$g_0$ 是逻辑门本身状态，灭为 0，亮为 1。
 
 将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的全与门的代数式。
 
 !!! quote
     设与门上第 $j$ 个普通灯表达式如下：
 
-    $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
+    $$l_j = \mathrm{Lamp}(s_{j1},\dots,s_{jk_j};l_{0j})$$
 
     则全与门代数式如下：
 
-    $$\mathrm{FullAndGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
+    $$\mathrm{FullAndGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
 
 !!! example
     !!! question
@@ -464,25 +464,25 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! tip
     既代数式可以写成如下形式时，对应逻辑可以只用一个与门实现。
 
-    $$f = \prod_{j=1}^{n} \left(\sum_{i} S_{ji} + s_j \right) \quad \text{or} \quad f+1 = \prod_{j=1}^{n} \left(\sum_{i} S_{ji} + s_j \right)$$
+    $$f = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right) \quad \text{or} \quad f+1 = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right)$$
 
 能只使用一个逻辑门实现的逻辑被称为 **简单逻辑**。
 
 !!! example
     或运算逻辑式：
 
-    $$A \lor B = \lnot (\lnot A \land \lnot B)$$
+    $$a \lor b = \lnot (\lnot a \land \lnot b)$$
 
     或运算代数式：
 
-    $$AB + A + B$$
+    $$ab + a + b$$
 
     !!! quote
-        $$\begin{array}{lll} A \lor B & = & \lnot (\lnot A \land \lnot B) \\ & = & (A + 1)(B + 1) + 1 \\ & = & AB + A + B + 1 + 1 \\ & = & AB + A + B \end{array}$$
+        $$\begin{array}{lll} a \lor b & = & \lnot (\lnot a \land \lnot b) \\ & = & (a + 1)(b + 1) + 1 \\ & = & ab + a + b + 1 + 1 \\ & = & ab + a + b \end{array}$$
 
     或运算代数式可以使用因式分解将其写成因式里只含加法的形式：
 
-    $$\begin{array}{lll} AB + A + B & = & AB + A + B + 1 - 1 \\ & = & (A + 1)(B + 1) + 1 \end{array}$$
+    $$\begin{array}{lll} ab + a + b & = & ab + a + b + 1 - 1 \\ & = & (a + 1)(b + 1) + 1 \end{array}$$
 
     所以或逻辑可以只用一个与门实现。
 
@@ -494,11 +494,11 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! example
     逻辑式：
 
-    $$(A \lor B) \land (C \lor D)$$
+    $$(a \lor b) \land (c \lor d)$$
 
     代数式：
 
-    $$(AB + A + B)(CD + C + D)$$
+    $$(ab + a + b)(cd + c + d)$$
 
     代数式及代数式加一都不可将因式中的乘法消除，因此不可只用一个与门表示。
 
@@ -525,18 +525,18 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
     使用最小项之和写出逻辑式：
 
-    $$\mathrm{OneHot}(A, B, C) = \lnot A \land \lnot B \land C \oplus \lnot A \land B \land \lnot C \oplus A \land \lnot B \land \lnot C$$
+    $$\mathrm{OneHot}(a, b, c) = \lnot a \land \lnot b \land c \oplus \lnot a \land b \land \lnot c \oplus a \land \lnot b \land \lnot c$$
 
     转换为代数式：
 
-    $$\begin{array}{lll} \mathrm{OneHot}(A, B, C) & = & (A + 1)(B + 1)C + (A + 1)B(C + 1) + A(B + 1)(C + 1) \\ & = & (AB + A + B + 1)C + \\ & & (AC + A + C + 1)B + \\ & & (BC + B + C + 1)A \\ & = & ABC + AC + BC + C + \\ & & ABC + AB + BC + B + \\ & & ABC + AB + AC + A \\ & = & ABC + A + B + C\end{array}$$
+    $$\begin{array}{lll} \mathrm{OneHot}(a, b, c) & = & (a + 1)(b + 1)c + (a + 1)b(c + 1) + a(b + 1)(c + 1) \\ & = & (ab + a + b + 1)c + \\ & & (ac + a + c + 1)b + \\ & & (bc + b + c + 1)a \\ & = & abc + ac + bc + c + \\ & & abc + ab + bc + b + \\ & & abc + ab + ac + a \\ & = & abc + a + b + c\end{array}$$
 
     !!! tip
-        这里利用了推论 $A + A = 0$，出现奇数次的项被保留，偶数次的项被消掉。
+        这里利用了推论 $a + a = 0$，出现奇数次的项被保留，偶数次的项被消掉。
 
     同理四输入独热的表达式为：
 
-    $$\mathrm{OneHot}(A, B, C, D) = ABC + ABD + ACD + BCD + A + B + C + D$$
+    $$\mathrm{OneHot}(a, b, c, d) = abc + abd + acd + bcd + a + b + c + d$$
 
     !!! tip
         证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。
@@ -544,7 +544,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! quote
     由上述结论推广可得：
 
-    $$\mathrm{XorGate}(L_1,\dots,L_n; s) = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} L_i + s$$
+    $$\mathrm{XorGate}(l_1,\dots,l_n; g_0) = \sum_{\substack{i \subseteq \{1,\dots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i + g_0$$
 
     $n$ 灯输入异或门代数式，$s$ 是逻辑门本身状态和输出用电器状态差，灭为 0，亮为 1。
 
@@ -553,16 +553,16 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! quote
     设异或门上第 $j$ 个普通灯表达式如下：
 
-    $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
+    $$l_j = \mathrm{Lamp}(s_{j1},\dots,s_{jk_j};l_{0j})$$
 
     则全异或门代数式如下：
 
-    $$\mathrm{FullXorGate} \Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
+    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
 
 !!! tip
     同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
 
-    $$f = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} S_{ji} + s_j \right) + s$$
+    $$f = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0 \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
 
 !!! example
     !!! question
@@ -572,19 +572,19 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
     三灯异或门的代数式为：
 
-    $$F = XYZ + X + Y + Z$$
+    $$f = xyz + x + y + z$$
 
-    * $Y_1 = (A + B + 1)(A + B + C)B + (A + B + 1) + (A + B + C) + B$
-    $X = A + B + 1,\ Y = A + B + C,\ Z = B$
+    * $y_1 = (a + b + 1)(a + b + c)b + (a + b + 1) + (a + b + c) + b$
+    $x = a + b + 1,\ y = a + b + c,\ z = b$
 
-    * $Y_2 = (B + 1)(A + B + C + 1)(C + 1) + (B + 1) + (A + B + C + 1) + (C + 1) + 1$
-    $X = B + 1,\ Y = A + B + C + 1,\ Z = C + 1$
+    * $y_2 = (b + 1)(a + b + c + 1)(c + 1) + (b + 1) + (a + b + c + 1) + (c + 1) + 1$
+    $x = b + 1,\ y = a + b + c + 1,\ z = c + 1$
 
-    * $Y_3 = B(A + B + C + 1)A + B + (A + B + C + 1) + A + 1$
-    $X = B,\ Y = A + B + C + 1,\ Z = A$
+    * $y_3 = b(a + b + c + 1)a + b + (a + b + c + 1) + a + 1$
+    $x = b,\ y = a + b + c + 1,\ z = a$
 
-    * $Y_4 = A(A + B + C)(A + C + 1) + A + (A + B + C) + (A + C + 1) + 1$
-    $X = A,\ Y = A + B + C,\ Z = A + C + 1$
+    * $y_4 = a(a + b + c)(a + c + 1) + a + (a + b + c) + (a + c + 1) + 1$
+    $x = a,\ y = a + b + c,\ z = a + c + 1$
 
 !!! example
     观察下方电路：
@@ -593,7 +593,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
     写出代数式为：
 
-    $$(ABC + A + B + C) + A + B + C = ABC$$
+    $$(abc + a + b + c) + a + b + c = abc$$
 
     满足与逻辑。
 
@@ -603,7 +603,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
     写出代数式为：
 
-    $$(ABC) + A + B + C = ABC + A + B + C$$ 
+    $$(abc) + a + b + c = abc + a + b + c$$ 
 
     满足独热逻辑。
 
@@ -612,11 +612,11 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! example
     三灯异或门的代数式为：
 
-    $$F = ABC + A + B + C$$
+    $$f = abc + a + b + c$$
 
-    令逻辑灯 $A = X + Y,\ B = X + Y,\ C = Y$，则：
+    令逻辑灯 $a = x + y,\ b = x + y,\ c = y$，则：
 
-    $$F = (X + Y)(X + Y)Y + (X + Y) + (X + Y) + Y = XY$$
+    $$f = (x + y)(x + y)y + (x + y) + (x + y) + y = xy$$
 
     满足二输入与逻辑。
 
@@ -625,11 +625,11 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! example
     三灯异或门的代数式为：
 
-    $$F = ABC + A + B + C$$
+    $$f = abc + a + b + c$$
 
-    令逻辑灯 $A = X + 1,\ B = Y + 1,\ C = 1$，则：
+    令逻辑灯 $a = x + 1,\ b = y + 1,\ c = 1$，则：
 
-    $$F = (X + 1)(Y + 1)1 + (X + 1) + (Y + 1) + 1 = XY$$
+    $$f = (x + 1)(y + 1)1 + (x + 1) + (y + 1) + 1 = xy$$
 
     满足二输入与逻辑。
 
@@ -638,18 +638,18 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 !!! info
     易证：
 
-    $$\mathrm{OneHot}(0, A_1, A_2, \cdots, A_n) = \mathrm{OneHot}(A_1, A_2, \cdots, A_n)$$
+    $$\mathrm{OneHot}(0, a_1, a_2, \cdots, a_n) = \mathrm{OneHot}(a_1, a_2, \cdots, a_n)$$
 
-    $$\mathrm{OneHot}(1, A_1, A_2, \cdots, A_n) = \lnot A_1 \land \lnot A_2 \land \cdots \land \lnot A_n$$
+    $$\mathrm{OneHot}(1, a_1, a_2, \cdots, a_n) = \lnot a_1 \land \lnot a_2 \land \cdots \land \lnot a_n$$
 
 !!! example
     三灯异或门的代数式为：
 
-    $$F = ABC + A + B + C$$
+    $$f = abc + a + b + c$$
 
-    令逻辑灯 $A = X,\ B = Y,\ C = 1,\ Z = F + 1$，则：
+    令逻辑灯 $a = x,\ b = y,\ c = 1,\ z = f + 1$，则：
 
-    $$Z = (XY1 + X + Y + 1) + 1 = XY + X + Y$$
+    $$z = (xy1 + x + y + 1) + 1 = xy + x + y$$
     
     满足二输入或逻辑。
 
@@ -671,14 +671,14 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
         | > | > | 输入 | 最小项 | 简写 |
         | --- | --- | --- | --- | --- |
-        | 0 | 0 | 0 | $\lnot A \cdot \lnot B \cdot \lnot C$ | $m_0$ |
-        | 0 | 0 | 1 | $\lnot A \cdot \lnot B \cdot C$ | $m_1$ |
-        | 0 | 1 | 0 | $\lnot A \cdot B \cdot \lnot C$ | $m_2$ |
-        | 0 | 1 | 1 | $\lnot A \cdot B \cdot C$ | $m_3$ |
-        | 1 | 0 | 0 | $A \cdot \lnot B \cdot \lnot C$ | $m_4$ |
-        | 1 | 0 | 1 | $A \cdot \lnot B \cdot C$ | $m_5$ |
-        | 1 | 1 | 0 | $A \cdot B \cdot \lnot C$ | $m_6$ |
-        | 1 | 1 | 1 | $A \cdot B \cdot C$ | $m_7$ |
+        | 0 | 0 | 0 | $\lnot a \cdot \lnot b \cdot \lnot c$ | $m_0$ |
+        | 0 | 0 | 1 | $\lnot a \cdot \lnot b \cdot c$ | $m_1$ |
+        | 0 | 1 | 0 | $\lnot a \cdot b \cdot \lnot c$ | $m_2$ |
+        | 0 | 1 | 1 | $\lnot a \cdot b \cdot c$ | $m_3$ |
+        | 1 | 0 | 0 | $a \cdot \lnot b \cdot \lnot c$ | $m_4$ |
+        | 1 | 0 | 1 | $a \cdot \lnot b \cdot c$ | $m_5$ |
+        | 1 | 1 | 0 | $a \cdot b \cdot \lnot c$ | $m_6$ |
+        | 1 | 1 | 1 | $a \cdot b \cdot c$ | $m_7$ |
 
     最小项之和可以被写为形如 $m_i + m_j + \cdots + m_k$ 的形式。
 
@@ -687,7 +687,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
         | > | > | 输入 | 输出 |
         | --- | --- | --- | --- |
-        | A | B | C | Y |
+        | a | b | c | y |
         | 0 | 0 | 0 | 0 |
         | 0 | 0 | 1 | 0 |
         | 0 | 1 | 0 | 0 |
@@ -699,7 +699,7 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
         其最小项之和的形式可以写为：
 
-        $$\lnot A \cdot B \cdot C + A \cdot \lnot B \cdot C + A \cdot B \cdot \lnot C + A \cdot B \cdot C$$
+        $$\lnot a \cdot b \cdot c + a \cdot \lnot b \cdot c + a \cdot b \cdot \lnot c + a \cdot b \cdot c$$
 
         也可以简写为：
 
@@ -709,116 +709,133 @@ $$A \cdot (B + C) = A \cdot B + A \cdot C$$
 
 ##### 字符串
 
-在逻辑表达式中，逻辑变量和逻辑常量（0 和 1）被称为 **字母**，而若干字母使用加法连接而成的表达式被称为 **字符串**，简称 **串**。
+在逻辑表达式中，逻辑量也被称为 **字母**，而若干字母使用加法连接而成的表达式被称为 **字符串**，简称 **串**。
 
 由 0 个字符连接成的表达式记作 0，称为 **空串**；0 和 1 两个串称为 **平凡串**；除 0 和 1 外的串被称为 **非平凡串**。如果两个串恒等（等价），那么这两个串相同。
 
 !!! info
     字母顺序不同的串仍等价：
 
-    $$A + B = B + A$$
+    $$a + b = b + a$$
 
     连接 1 相当于对字母取反：
 
-    $$A + 1 = \lnot A$$
+    $$a + 1 = \lnot a$$
 
     连接 0 可以直接消掉：
 
-    $$A + 0 = A$$
+    $$a + 0 = a$$
 
     一对重复字母可以抵消：
 
-    $$A + A = 0$$
+    $$a + a = 0$$
 
 对于 $n$ 个字母，可以组成 $2^n$ 个不同的串，每个字母在串中都有存在和不存在两种可能。
 
 !!! example
-    由字母 $1$、$A$、$B$ 组成的不同的串有 8 个：$0$、$1$、$A$、$B$、$A + B$、$A + 1$、$B + 1$、$A + B + 1$。
+    由字母 $1$、$a$、$b$ 组成的不同的串有 8 个：$0$、$1$、$a$、$b$、$a + b$、$a + 1$、$b + 1$、$a + b + 1$。
 
     !!! tip
-        一个串中可以包含重复的字母，但是由于性质 $A + A = 0$ 和 $A + 0 = A$，一对重复字母可以直接抵消。
+        一个串中可以包含重复的字母，但是由于性质 $a + a = 0$ 和 $a + 0 = a$，一对重复字母可以直接抵消。
 
 给定一组串 $s_1$、$s_2$、$\cdot$、$s_r$，任选其中若干串（至少一个）求和，得到的串称为这组串的一个 **线性组合**。
 
 如果一组非平凡串存在至少一个线性组合为平凡串（0 或 1），那么我们称这组非平凡串 **线性相关**；否则如果一组非平凡串的全部线性组合都是非平凡串，那么我们称这组非平凡串 **线性无关**。一组非平凡串的最大线性无关的子集的大小称为这组非平凡串的 **秩**。
 
 !!! example
-    考虑三个串 $A + B$、$A + B + C$、$A + B + C + D$。
+    考虑三个串 $a + b$、$a + b + c$、$a + b + c + d$。
     
     令
 
-    $X = A + B$
-    $Y = A + B + C$
-    $Z = A + B + C + D$
+    $x = a + b$
+    $y = a + b + c$
+    $z = a + b + c + d$
     
-    那么 $X$、$Y$、$Z$ 的所有不同线性组合为：
+    那么 $x$、$y$、$z$ 的所有不同线性组合为：
 
-    $X = A + B$
-    $Y = A + B + C$
-    $Z = A + B + C + D$
-    $X + Y = C$
-    $X + Z = C + D$
-    $Y + Z = D$
-    $X + Y + Z = A + B + D$
+    $x = a + b$
+    $y = a + b + c$
+    $z = a + b + c + d$
+    $x + y = c$
+    $x + z = c + d$
+    $y + z = d$
+    $x + y + z = a + b + d$
 
-    所有线性组合都是非平凡串，所以 $A + B$、$A + B + C$、$A + B + C + D$ 线性无关，$\{A + B, A + B + C, A + B + C + D\}$ 的最大线性无关子集就是它本身，其秩为 3。
+    所有线性组合都是非平凡串，所以 $a + b$、$a + b + c$、$a + b + c + d$ 线性无关，$\{a + b, a + b + c, a + b + c + d\}$ 的最大线性无关子集就是它本身，其秩为 3。
 
 !!! example
-    考虑三个串 $A + B$、$B + C$、$A + C$。
+    考虑三个串 $a + b$、$b + c$、$a + c$。
 
     令
 
-    $X = A + B$
-    $Y = B + C$
-    $Z = A + C$
+    $x = a + b$
+    $y = b + c$
+    $z = a + c$
 
-    那么 $X$、$Y$、$Z$ 的所有不同线性组合为：
+    那么 $x$、$y$、$z$ 的所有不同线性组合为：
 
-    $X = A + B$
-    $Y = B + C$
-    $Z = A + C$
-    $X + Y = A + C$
-    $X + Z = B + C$
-    $Y + Z = A + B$
-    $X + Y + Z = 0$
+    $x = a + b$
+    $y = b + c$
+    $z = a + c$
+    $x + y = a + c$
+    $x + z = b + c$
+    $y + z = a + b$
+    $x + y + z = 0$
 
     !!! tip
         注意到：
 
-        $X = Y + Z = A + B$
-        $Y = X + Z = B + C$
-        $Z = X + Y = A + C$
+        $x = y + z = a + b$
+        $y = x + z = b + c$
+        $z = x + y = a + c$
 
-    其中 $X + Y + Z = 0$ 是平凡串，所以 $A + B$、$B + C$、$A + C$ 线性相关。
+    其中 $x + y + z = 0$ 是平凡串，所以 $a + b$、$b + c$、$a + c$ 线性相关。
 
-    $\{A + B, B + C, A + C\}$ 的一个子集是 $\{A + B, B + C\}$
+    $\{a + b, b + c, a + c\}$ 的一个子集是 $\{a + b, b + c\}$
 
     令
 
-    $X = A + B$
-    $Y = B + C$
+    $x = a + b$
+    $y = b + c$
 
-    那么 $X$、$Y$ 的所有不同线性组合为：
+    那么 $x$、$y$ 的所有不同线性组合为：
 
-    $X = A + B$
-    $Y = B + C$
-    $X + Y = A + C$
+    $x = a + b$
+    $y = b + c$
+    $x + y = a + c$
 
-    都是非平凡串，所以 $A + B$、$B + C$ 线性无关。$\{A + B, B + C\}$ 是 $\{A + B, B + C, A + C\}$ 的其中一个最大线性无关子集，大小为 2。
+    都是非平凡串，所以 $a + b$、$b + c$ 线性无关。$\{a + b, b + c\}$ 是 $\{a + b, b + c, a + c\}$ 的其中一个最大线性无关子集，大小为 2。
 
-    则 $A + B$、$B + C$、$A + C$ 的秩为 2。
+    则 $a + b$、$b + c$、$a + c$ 的秩为 2。
 
 记一组串的秩为 $r$，那么这组串拥有的不同非平凡线性组合数量为 $2^r - 1$。反之，一组串拥有的不同非平凡线性组合数量一定有形式 $2^r - 1$，并且在该形式下这组串的秩为 $r$。
 
 !!! example
-    考虑三个串：$A + B$、$A + B + C$、$A + B + C + D$，其秩为 3，则其有 $2^3 - 1 = 7$ 个不同的非线性组合：$A + B$、$A + B + C$、$A + B + C + D$、$C$、$C + D$、$D$、$A + B + D$；对于有 7 个不同的非线性组合的多个串，其秩为 $\log_2 (7+1) = 3$。
+    考虑三个串：$a + b$、$a + b + c$、$a + b + c + d$，其秩为 3，则其有 $2^3 - 1 = 7$ 个不同的非线性组合：$a + b$、$a + b + c$、$a + b + c + d$、$c$、$c + d$、$d$、$a + b + d$；对于有 7 个不同的非线性组合的多个串，其秩为 $\log_2 (7+1) = 3$。
 
-    考虑三个串：$A + B$、$B + C$、$A + C$，其秩为 2，则其有 $2^2 - 1 = 3$ 个不同的非线性组合：$A + B$、$B + C$、$A + C$；对于有 3 个不同的非线性组合的多个串，其秩为 $\log_2(3+1) = 2$。
+    考虑三个串：$a + b$、$b + c$、$a + c$，其秩为 2，则其有 $2^2 - 1 = 3$ 个不同的非线性组合：$a + b$、$b + c$、$a + c$；对于有 3 个不同的非线性组合的多个串，其秩为 $\log_2(3+1) = 2$。
 
 !!! info
     秩为 $r$ 的一组互不相同的非平凡串至多有 $2^r - 1$ 个。$n$ 个互不相同的非平凡串的秩至少为 $\lceil\log_2 (n+1)\rceil$。
 
     !!! example
-        对于秩为 3 的一组互不相同的非平凡串，如果用字母 $A$、$B$、$C$ 表示，最多可以写出：$A$、$B$、$C$、$A + B$、$A + C$、$B + C$、$A + B + C$ 七个，也就是三个字母所有可能组成的串去掉 $0$ 剩下的情况。其中任选两个串，其秩至少为 $\lceil\log_2 (2+1)\rceil = 2$，任选三个串，其秩至少为 $\lceil\log_2 (3+1)\rceil = 2$。
+        对于秩为 3 的一组互不相同的非平凡串，如果用字母 $a$、$b$、$c$ 表示，最多可以写出：$a$、$b$、$c$、$a + b$、$a + c$、$b + c$、$a + b + c$ 七个，也就是三个字母所有可能组成的串去掉 $0$ 剩下的情况。其中任选两个串，其秩至少为 $\lceil\log_2 (2+1)\rceil = 2$，任选三个串，其秩至少为 $\lceil\log_2 (3+1)\rceil = 2$。
 
+##### 逻辑门
 
+!!! example
+    !!! question
+        对于逻辑函数 $f(a, b, c)$，当且仅当 $a, b, c = 1, 0, 0$ 或 $0, 1, 1$ 时取值为 1；其余情况取值为 0，求函数 $f$ 的单与门表示。
+
+    对于三个字母 $a$、$b$、$c$ 组成的非平凡串，有 $a; b; c; a + b; a + c; b + c; a + b + c$ 七种情况。对于输入 $a, b, c = 1, 0, 0$ 或 $0, 1, 1$，总有线性无关串 $a + b$ 和 $b + c + 1$ 同时为 1。若 $f$ 可以分解为线性因式的乘积，那么这些线性因式在所有使 $f = 1$ 的最小项上，都必须取值为 1，因此，因式一定取自这些在最小项集合上恒等为 1 的非平凡串。不妨构造 $f = (a + b)(b + c + 1)$，经过验证，符合题意。
+
+    @import "images/3/1/4/and_example_1.png"
+
+    !!! tip
+        当变量数量较少且函数可以被分解为线性因式时，我们可以通过在给定最小项集合上，寻找一组线性无关且恒等为 1 的非平凡串来得到可能的因式。
+
+        不过这种方法依赖枚举与观察，接下来将介绍更通用的方法。
+
+考虑前述普通灯通式：
+
+$$\mathrm{Lamp}(s_1,\dots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$

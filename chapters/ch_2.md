@@ -299,7 +299,7 @@
 
     设定左侧火把与开关状态相同，则可以用火把代替开关状态。使用电线连接输入（状态电源开关）与输出（状态用电器火把），输入和输出状态始终相反，存在非逻辑。
 
-    $$Y = \lnot A$$
+    $$y = \lnot a$$
 
 像这样不使用逻辑门，只使用一个任意状态电源、一个任意状态用电器和一根电线实现的非逻辑被称为 **线非**。由于线非的存在，我们可以在任意状态用电器处实现对输入的取反，而不需要使用逻辑门。
 
@@ -312,14 +312,14 @@
 
     使用电线连接输入（两个状态电源开关）与输出（状态用电器火把）满足异或逻辑。
 
-    $$Y = A \oplus B$$
+    $$y = a \oplus b$$
 
 由于异或具有交换率，交换两个输入对输出没有影响，所以输出与两个输入的顺序无关，具有普适性。同理，异或具有结合律，所以即便有多个输入，输出仍然满足所有输入间异或，可以任意扩展。
 
 !!! example 
     @import "images/2/1/3/wire_xor_multi.png"
 
-    $$Y = A \oplus B \oplus C \oplus D \oplus E \oplus F$$
+    $$y = a \oplus b \oplus c \oplus d \oplus e \oplus f$$
 
 像这样不使用逻辑门，只使用多个状态电源和一个状态用电器实现异或逻辑的方式被称为 **线异或**。由于线异或的存在，我们可以在任意状态用电器处实现异或，而不需要使用逻辑门。
 
@@ -337,7 +337,7 @@
     !!! example
         @import "images/2/1/3/wire_xor_color.png"
 
-        $$Y = A \oplus B \oplus C \oplus D \oplus E \oplus F$$
+        $$y = a \oplus b \oplus c \oplus d \oplus e \oplus f$$
 
 !!! tip
     注意区分线异或的异或和异或门的独热逻辑在输入数量大于等于 3 时是不同的。
@@ -356,7 +356,7 @@
 
     使用电线连接输入（两个激活电源开关）与输出（激活用电器广播盒）满足或逻辑。
 
-    $$Y = A \lor B$$
+    $$y = a \lor b$$
 
 像这样不使用逻辑门，只使用多个激活电源和一个激活用电器实现或逻辑的方式被称为 **线或**。由于线或的存在，我们可以在任意激活用电器处实现或，而不需要使用逻辑门。
 
@@ -368,7 +368,7 @@
     !!! example
         @import "images/2/1/3/wire_or_color.png"
 
-        $$Y = A \lor B \lor C \lor D \lor E \lor F$$
+        $$y = a \lor b \lor c \lor d \lor e \lor f$$
 
 !!! tip
     多输入或与两两或等价，所以线或与多输入或门等价。
@@ -376,7 +376,7 @@
 !!! example
     @import "images/2/1/3/wire_or_multi.png"
 
-    $$Y = A \lor B \lor C \lor D \lor E \lor F$$
+    $$y = a \lor b \lor c \lor d \lor e \lor f$$
 
 !!! tip
     然而对于没有冷却时间的物理激活用电器（如广播盒），被激活一次就会响应一次，即便是同时激活多次，每一次都会单独响应，并不是严格的线或逻辑。
@@ -416,28 +416,32 @@
 逻辑灯必须堆叠在逻辑门上，我们说这些逻辑灯在该逻辑门上，该逻辑门在这些逻辑灯下。
 
 !!! quote
-    设一个逻辑灯有 $m$ 个电源输入，电源的状态分别是 $S_1, S_2, \dots, S_m$，则： 
+    设一个逻辑灯有 $m$ 个电源输入，电源的状态分别是 $s_1, s_2, \cdots, s_m$，则： 
 
     普通灯（灭）的逻辑式：
 
-    $$\mathrm{OffLamp}(S_1, S_2,\dots,S_m) = S_1 \oplus S_2 \oplus \cdots \oplus S_m$$
+    $$\mathrm{OffLamp}(s_1, s_2, \cdots,s_m) = s_1 \oplus s_2 \oplus \cdots \oplus s_m$$
 
     普通灯（亮）的逻辑式：
 
-    $$\mathrm{OnLamp}(S_1, S_2,\dots,S_m) = \lnot (S_1 \oplus S_2 \oplus \cdots \oplus S_m)$$
+    $$\mathrm{OnLamp}(s_1, s_2, \cdots,s_m) = \lnot (s_1 \oplus s_2 \oplus \cdots \oplus s_m)$$
+
+    或者可写为：
+
+    $$\mathrm{OnLamp}(s_1, s_2, \cdots,s_m) = s_1 \oplus s_2 \oplus \cdots \oplus s_m \oplus 1$$
 
     普通灯的逻辑通式：
 
-    $$\mathrm{Lamp}(S_1, S_2,\dots,S_m; s) = S_1 \oplus S_2 \oplus \cdots \oplus S_m \oplus s$$
+    $$\mathrm{Lamp}(s_1, s_2, \cdots,s_m; l_0) = s_1 \oplus s_2 \oplus \cdots \oplus s_m \oplus l_0$$
 
-    $s$ 是逻辑灯状态，灭灯为 0，亮灯为 1。
+    $l_0$ 是逻辑灯状态，灭灯为 0，亮灯为 1。
 
     !!! tip
         应用异或的可控非逻辑定义。
 
     故障灯的逻辑式：
 
-    $$\mathrm{FaultLamp}(S_1,\dots,S_m) = S_1 \lor S_2 \lor \cdots \lor S_m$$
+    $$\mathrm{FaultLamp}(s_1, s_2, \cdots, s_m) = s_1 \lor s_2 \lor \cdots \lor s_m$$
 
 !!! example
     @import "images/2/2/1/logic_gate_regions.png"
@@ -495,20 +499,20 @@
 
 上一章已经证明过或逻辑可以通过取反输入和输出与与逻辑等价，表述如下：
 
-$$\lnot(A \land B) = \lnot A \lor \lnot B$$
+$$\lnot(a \land b) = \lnot a \lor \lnot b$$
 
-$$\lnot(A \lor B) = \lnot A \land \lnot B$$
+$$\lnot(a \lor b) = \lnot a \land \lnot b$$
 
 !!! tip
     对于三项及三项以上仍然是成立的，可自行证明。
 
 将或门的逻辑表达式进行两次取反，然后可将或逻辑转换为与逻辑：
 
-$$Y = A \lor B = \lnot \lnot (A \lor B) = \lnot (\lnot A \land \lnot B)$$
+$$y = a \lor b = \lnot \lnot (a \lor b) = \lnot (\lnot a \land \lnot b)$$
 
 将与门的逻辑表达式进行两次取反，然后可将与逻辑转换为或逻辑：
 
-$$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
+$$y = a \land b = \lnot \lnot (a \land b) = \lnot (\lnot a \lor \lnot b)$$
 
 由此我们可以直接令输入状态电源的状态与输出用电器普通灯的状态相反，令与门和或非门、或门和与非门等价，然后再利用前述结论，可令与门和或门等价。
 
@@ -540,36 +544,36 @@ $$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
     右侧故障灯激活大于等于一次时，线或结果都是 1，输出 1。
 
 !!! quote
-    设一个普通门有 $n$ 个普通灯输入，普通灯的状态分别是 $L_1, L_2, \dots, L_m$，则： 
+    设一个普通门有 $n$ 个普通灯输入，普通灯的状态分别是 $l_1, l_2, \dots, l_m$，则： 
 
     与门的逻辑通式：
 
-    $$\mathrm{AndGate}(L_1, L_2,\dots,L_m; s) = L_1 \land L_2 \land \cdots \land L_n \oplus s$$
+    $$\mathrm{AndGate}(l_1, l_2,\dots,l_m; g_0) = l_1 \land l_2 \land \cdots \land l_n \oplus g_0$$
 
     异或门的逻辑通式：
     
-    $$\mathrm{XorGate}(L_1, L_2,\dots,L_m; s) = \mathrm{OneHot}(L_1, L_2, \cdots, L_n) \oplus s$$
+    $$\mathrm{XorGate}(l_1, l_2,\dots,l_m; g_0) = \mathrm{onehot}(l_1, l_2, \cdots, l_n) \oplus g_0$$
 
-    $s$ 是逻辑门状态，灭门为 0，亮门为 1。
+    $g_0$ 是逻辑门状态，灭门为 0，亮门为 1。
 
 !!! quote
     设普通门上第 $j$ 个普通灯表达式如下：
 
-    $$L_j = \mathrm{Lamp}(S_{j1},\dots,S_{jk_j};s_j)$$
+    $$l_j = \mathrm{Lamp}(s_{j1},\dots,s_{jk_j};l_{0j})$$
 
     全与门逻辑式如下：
 
-    $$\mathrm{FullAndGate}\Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ = \\ (S_{11} \oplus \cdots \oplus S_{1k_1} \oplus s_1) \land \cdots \land (S_{j1} \oplus \cdots \oplus S_{jk_j} \oplus s_j) \oplus s$$
+    $$\mathrm{FullAndGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ = \\ (s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}) \land \cdots \land (s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j}) \oplus g_0$$
 
     全异或门逻辑式如下：
 
-    $$\mathrm{FullXorGate}\Big(\{S_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{s_j\}_{j=1}^{n}, s\Big) \\ = \\ \mathrm{OneHot}(S_{11} \oplus \cdots \oplus S_{1k_1} \oplus s_1, \cdots, S_{j1} \oplus \cdots \oplus S_{jk_j} \oplus s_j) \oplus s$$
+    $$\mathrm{FullXorGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ = \\ \mathrm{OneHot}(s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}, \cdots, s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j}) \oplus g_0$$
 
     !!! tip
-        将普通门逻辑式中的全部 $L_j$ 用对应普通灯逻辑式代替
+        将普通门逻辑式中的全部 $l_j$ 用对应普通灯逻辑式代替
 
 !!! tip
-    代入法是一种常见的代数运算方法。当某个逻辑变量已知等价于一个由其他变量构成的代数式时，可以在任意逻辑式中用该表达式直接替换原变量，而不改变逻辑结果。
+    代入法是一种常见的代数运算方法。当某个逻辑量已知等价于一个由其他变量构成的代数式时，可以在任意逻辑式中用该表达式直接替换原变量，而不改变逻辑结果。
 
     逻辑灯的输入是其上全部电线连接的全部电源状态和其本身状态，输出是逻辑灯状态；逻辑门输入是其上全部逻辑灯状态，输出是逻辑门状态。
     
@@ -581,23 +585,23 @@ $$Y = A \land B = \lnot \lnot (A \land B) = \lnot (\lnot A \lor \lnot B)$$
 
         @import "images/2/2/2/full_and.png"
 
-    * $Y_1 = \lnot (A \oplus B) \land (A \oplus B \oplus C) \land A$
+    * $y_1 = \lnot (a \oplus b) \land (a \oplus b \oplus c) \land a$
 
-    * $Y_2 = \lnot ((A \oplus C) \land \lnot (A \oplus B \oplus C) \land C)$
+    * $y_2 = \lnot ((a \oplus c) \land \lnot (a \oplus b \oplus c) \land c)$
 
-    * $Y_3 = \lnot (\lnot B \land \lnot (A \oplus B \oplus C) \land \lnot C)$
+    * $y_3 = \lnot (\lnot b \land \lnot (a \oplus b \oplus c) \land \lnot c)$
 
-    * $Y_4 = B \land (A \oplus B \oplus C) \land \lnot A$
+    * $y_4 = b \land (a \oplus b \oplus c) \land \lnot a$
 
     使用 $\oplus 1$ 代替非逻辑：
 
-    * $Y_1 = (A \oplus B \oplus 1) \land (A \oplus B \oplus C) \land A$
+    * $y_1 = (a \oplus b \oplus 1) \land (a \oplus b \oplus c) \land a$
 
-    * $Y_2 = (A \oplus C) \land (A \oplus B \oplus C \oplus 1) \land C \oplus 1$
+    * $y_2 = (a \oplus c) \land (a \oplus b \oplus c \oplus 1) \land c \oplus 1$
 
-    * $Y_3 = (B \oplus 1) \land (A \oplus B \oplus C \oplus 1) \land (C \oplus 1) \oplus 1$
+    * $y_3 = (b \oplus 1) \land (a \oplus b \oplus c \oplus 1) \land (c \oplus 1) \oplus 1$
 
-    * $Y_4 = B \land (A \oplus B \oplus C) \land (A \oplus 1)$
+    * $y_4 = b \land (a \oplus b \oplus c) \land (a \oplus 1)$
 
 #### 2.2.3 故障逻辑门
 
