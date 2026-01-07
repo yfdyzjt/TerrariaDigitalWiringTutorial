@@ -406,7 +406,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 普通灯是异或逻辑（线异或），输入是其上所有电线连接的所有电源状态和普通灯初始状态，输出是普通灯状态。其上电线连接 $m$ 个电源的普通灯代数式中有 $m$ 项相加，每一项都对应一个其上电线连接的电源，然后再加上普通灯初始状态，灭灯为 0，亮灯为 1。
 
 !!! quote
-    $$\mathrm{Lamp}(s_1,\dots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
+    $$\mathrm{Lamp}(s_1,\cdots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
 
     $m$ 电源输入的普通灯代数式，$l_0$ 是普通灯本身状态，灭为 0，亮为 1。
 
@@ -430,7 +430,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 与门是与逻辑，输入是其上所有普通灯状态，输出是与门状态，输入输出间关系满足与逻辑。其上有 $n$ 个灯的与门代数式中有 $n$ 项相乘，每一项都对应一个其上普通灯。当与门状态与输出用电器相反时，完整表达式会在与门表达式的基础上加 1 取反。
 
 !!! quote
-    $$\mathrm{AndGate}(l_1,\dots,l_n;g_0) = \prod_{j=1}^{n} l_j + g_0$$
+    $$\mathrm{AndGate}(l_1,\cdots,l_n;g_0) = \prod_{j=1}^{n} l_j + g_0$$
 
     $n$ 灯输入与门代数式，$g_0$ 是逻辑门本身状态，灭为 0，亮为 1。
 
@@ -439,7 +439,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! quote
     设与门上第 $j$ 个普通灯表达式如下：
 
-    $$l_j = \mathrm{Lamp}(s_{j1},\dots,s_{jk_j};l_{0j})$$
+    $$l_j = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
 
     则全与门代数式如下：
 
@@ -544,7 +544,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! quote
     由上述结论推广可得：
 
-    $$\mathrm{XorGate}(l_1,\dots,l_n; g_0) = \sum_{\substack{i \subseteq \{1,\dots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i + g_0$$
+    $$\mathrm{XorGate}(l_1,\cdots,l_n; g_0) = \sum_{\substack{i \subseteq \{1,\cdots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i + g_0$$
 
     $n$ 灯输入异或门代数式，$s$ 是逻辑门本身状态和输出用电器状态差，灭为 0，亮为 1。
 
@@ -553,16 +553,16 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! quote
     设异或门上第 $j$ 个普通灯表达式如下：
 
-    $$l_j = \mathrm{Lamp}(s_{j1},\dots,s_{jk_j};l_{0j})$$
+    $$l_j = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
 
     则全异或门代数式如下：
 
-    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ =  \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
+    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ =  \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
 
 !!! tip
     同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
 
-    $$f = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0 \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\dots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
+    $$f = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0 \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
 
 !!! example
     !!! question
@@ -838,4 +838,6 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
 考虑前述普通灯通式：
 
-$$\mathrm{Lamp}(s_1,\dots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
+$$\mathrm{Lamp}(s_1,\cdots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
+
+
