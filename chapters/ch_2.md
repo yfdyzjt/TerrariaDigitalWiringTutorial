@@ -548,13 +548,11 @@ $$y = a \land b = \lnot \lnot (a \land b) = \lnot (\lnot a \lor \lnot b)$$
 
     与门的逻辑通式：
 
-    $$\mathrm{AndGate}(l_1, l_2,\dots,l_m; g_0) = l_1 \land l_2 \land \cdots \land l_n \oplus g_0$$
+    $$\mathrm{AndGate}(l_1, l_2,\dots,l_m) = l_1 \land l_2 \land \cdots \land l_n$$
 
     异或门的逻辑通式：
     
-    $$\mathrm{XorGate}(l_1, l_2,\dots,l_m; g_0) = \mathrm{onehot}(l_1, l_2, \cdots, l_n) \oplus g_0$$
-
-    $g_0$ 是逻辑门状态，灭门为 0，亮门为 1。
+    $$\mathrm{XorGate}(l_1, l_2,\dots,l_m) = \mathrm{onehot}(l_1, l_2, \cdots, l_n)$$
 
 !!! quote
     设普通门上第 $j$ 个普通灯表达式如下：
@@ -563,11 +561,11 @@ $$y = a \land b = \lnot \lnot (a \land b) = \lnot (\lnot a \lor \lnot b)$$
 
     全与门逻辑式如下：
 
-    $$\mathrm{FullAndGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ = \\ (s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}) \land \cdots \land (s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j}) \oplus g_0$$
+    $$\mathrm{FullAndGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) \\ = \\ (s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}) \land \cdots \land (s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j})$$
 
     全异或门逻辑式如下：
 
-    $$\mathrm{FullXorGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ = \\ \mathrm{OneHot}(s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}, \cdots, s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j}) \oplus g_0$$
+    $$\mathrm{FullXorGate}\Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) \\ = \\ \mathrm{OneHot}(s_{11} \oplus \cdots \oplus s_{1k_1} \oplus l_{01}, \cdots, s_{j1} \oplus \cdots \oplus s_{jk_j} \oplus l_{0j})$$
 
     !!! tip
         将普通门逻辑式中的全部 $l_j$ 用对应普通灯逻辑式代替

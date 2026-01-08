@@ -430,20 +430,20 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 与门是与逻辑，输入是其上所有普通灯状态，输出是与门状态，输入输出间关系满足与逻辑。其上有 $n$ 个灯的与门代数式中有 $n$ 项相乘，每一项都对应一个其上普通灯。当与门状态与输出用电器相反时，完整表达式会在与门表达式的基础上加 1 取反。
 
 !!! quote
-    $$\mathrm{AndGate}(l_1,\cdots,l_n;g_0) = \prod_{j=1}^{n} l_j + g_0$$
+    $$\mathrm{AndGate}(l_1,\cdots,l_n) = \prod_{j=1}^{n} l_j$$
 
-    $n$ 灯输入与门代数式，$g_0$ 是逻辑门本身状态，灭为 0，亮为 1。
+    $n$ 灯输入与门代数式。
 
 将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的全与门的代数式。
 
 !!! quote
     设与门上第 $j$ 个普通灯表达式如下：
 
-    $$l_j = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
+    $$l_{1j} = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
 
     则全与门代数式如下：
 
-    $$\mathrm{FullAndGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
+    $$\mathrm{FullAndGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
 
 !!! example
     !!! question
@@ -544,25 +544,25 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! quote
     由上述结论推广可得：
 
-    $$\mathrm{XorGate}(l_1,\cdots,l_n; g_0) = \sum_{\substack{i \subseteq \{1,\cdots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i + g_0$$
+    $$\mathrm{XorGate}(l_1,\cdots,l_n) = \sum_{\substack{i \subseteq \{1,\cdots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i$$
 
-    $n$ 灯输入异或门代数式，$s$ 是逻辑门本身状态和输出用电器状态差，灭为 0，亮为 1。
+    $n$ 灯输入异或门代数式。
 
 将普通灯代数式带入异或门代数式即可得到由普通灯和异或门组成的全异或门的代数式。
 
 !!! quote
     设异或门上第 $j$ 个普通灯表达式如下：
 
-    $$l_j = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
+    $$l_{1j} = \mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})$$
 
     则全异或门代数式如下：
 
-    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}, g_0\Big) \\ =  \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
+    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) \\ =  \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
 
 !!! tip
     同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
 
-    $$f = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0 \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) + g_0$$
+    $$f = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
 
 !!! example
     !!! question
@@ -836,8 +836,146 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
         不过这种方法依赖枚举与观察，接下来将介绍更通用的方法。
 
-考虑前述普通灯通式：
+考虑前述 $m$ 输入，初始状态 $l_0$ 的普通灯通式：
 
 $$\mathrm{Lamp}(s_1,\cdots,s_m;l_0) = \sum_{i=1}^{m} s_i + l_0$$
 
+当输入的电源并没有全部连接到逻辑灯时，引入表示输入电源 $s_i$ 与逻辑灯的电线连接关系的项 $w_i$，当该电源通过电线连接到逻辑灯时，$w_i = 1$，当该电源没有通过电线连接到逻辑灯时，$w_i = 0$。
 
+设有 $n$ 个输入电源，普通灯的初始状态 $l_0$，普通灯的最终状态 $l_1$。
+
+则该普通灯终态表达式可以写为：
+
+$$\sum_{i=1}^{n} w_i s_i + l_0 = l_1$$
+
+对于这样的表达式，我们可以使用向量简化表示。
+
+设电线连接向量为 $\mathbf{w}$
+
+$$\mathbf{w} = (w_1, \cdots, w_n)$$
+
+设电源状态向量为 $\mathbf{s}$
+
+$$\mathbf{s} = (s_1, \cdots, s_n)$$
+
+!!! tip
+    $\mathbf{s}$ 和 $\mathbf{w}$ 的维度相同，都是 $n$。
+
+则该普通灯终态表达式可以写为：
+
+$$\mathbf{w}\, \mathbf{s}^{\mathrm{T}} + l_0 = l_1$$
+
+既：
+
+$$\begin{pmatrix} w_1 & w_2 & \cdots & w_n \end{pmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n \end{pmatrix} + l_0 = l_1 $$
+
+$$w_1 s_1 + w_2 s_2 + \cdots + w_n s_n + l_0 = l_1$$
+
+!!! example
+    !!! question
+        考虑以下三输入普通灯：
+
+        @import "images/3/1/4/and_example_2_1.png"
+
+        根据电线接法和输入状态，列出普通灯的表达式并求得普通灯终态：
+
+        @import "images/3/1/4/and_example_2_2.png"
+
+    $\mathbf{w}_1 = (1, 0, 1);\ \mathbf{s}_1 = (1, 1, 0);\ l_{01} = 0;$
+
+    $l_{11} = \mathbf{w}_1\, \mathbf{s}_1^{\mathrm{T}} + l_{01} = \begin{pmatrix} 1 & 0 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} + 0 = 1 + 0 = 1$
+
+    $\mathbf{w}_2 = (0, 1, 1);\ \mathbf{s}_1 = (1, 0, 1);\ l_{02} = 1;$
+
+    $l_{12} = \mathbf{w}_2\, \mathbf{s}_2^{\mathrm{T}} + l_{02} = \begin{pmatrix} 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + 1 = 1 + 1 = 0$
+
+    $\mathbf{w}_3 = (1, 0, 0);\ \mathbf{s}_1 = (0, 1, 1);\ l_{03} = 1;$
+
+    $l_{13} = \mathbf{w}_3\, \mathbf{s}_3^{\mathrm{T}} + l_{03} = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + 1 = 0 + 1 = 1$
+
+设全普通门上有 $m$ 个普通灯，有 $n$ 个输入电源。其中第 $j$ 个逻辑灯初始状态为 $l_{j0}$，电线连接为 $\mathbf{w}_j$，初态 $l_{0j}$，终态 $l_{1j}$，则其表达式为：
+
+$$l_{1j} = \mathbf{w}_j\,\mathbf{s}^{\mathrm{T}} + l_{0j}$$
+
+对于多个标量，我们可以将它们合并为向量表示；对于多个向量，我们可以将它们合并为矩阵表示。
+
+设电线连接矩阵为 $\mathbf{W}$
+
+$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{bmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{bmatrix}$$
+
+设电源状态向量为 $\mathbf{s}$
+
+$$\mathbf{s} = (s_1, \cdots, s_n)$$
+
+设逻辑灯初态向量为 $\mathbf{l}_0$
+
+$$\mathbf{l}_0 = (l_{01}, \cdots, l_{0m})$$
+
+设逻辑灯终态向量为 $\mathbf{l}_1$
+
+$$\mathbf{l}_1 = (l_{11}, \cdots, l_{1m})$$
+
+则该全普通门上普通灯终态表达式可以写为
+
+$$\mathbf{W}\, \mathbf{s}^{\mathrm{T}} + \mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}$$
+
+既：
+
+$$\begin{bmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{bmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n\end{pmatrix} + \begin{pmatrix} l_{01} \\ l_{02} \\ \vdots \\ l_{0m} \end{pmatrix} = \begin{pmatrix} l_{11} \\ l_{12} \\ \vdots \\ l_{1m} \end{pmatrix}$$
+
+!!! example
+    !!! question
+        考虑以下三输入全普通门上的逻辑灯：
+
+        @import "images/3/1/4/and_example_3_1.png"
+
+        根据电线接法和输入状态，列出全部普通灯的表达式并求得普通灯终态：
+
+        @import "images/3/1/4/and_example_3_2.png"
+
+    $\mathbf{W}_1 = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix};\ \mathbf{s}_1 = (0, 1, 1);\ \mathbf{l}_{01} = (1, 1);$
+
+    $\mathbf{l}_{11} = \mathbf{W}_1\, \mathbf{s}_1^{\mathrm{T}} + \mathbf{l}_{01}^{\mathrm{T}} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}\, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
+
+    $\mathbf{W}_2 = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix};\ \mathbf{s}_1 = (1, 0, 1);\ \mathbf{l}_{01} = (0, 1);$
+
+    $\mathbf{l}_{12} = \mathbf{W}_2\, \mathbf{s}_2^{\mathrm{T}} + \mathbf{l}_{02}^{\mathrm{T}} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+
+与门在其上全部普通灯点亮时点亮；异或门在其上只有一个普通灯点亮时点亮。也就是说，与门在输入最小项时，其上逻辑灯终态向量全部元素为 1；异或门在输入最小项时，其上逻辑灯终态向量中有且仅有一个元素是 1。而对于非最小项的输入，逻辑灯终态是其余情况，不会满足逻辑门点亮条件，无需关注。
+
+!!! quote
+    $$\mathbf{W}\, \mathbf{s}^{\mathrm{T}} + \mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}$$
+
+    当逻辑门为与门，且输入最小项时，逻辑灯终态向量元素全部为 1。
+    
+    $$\mathbf{l}_1 = (1, 1, \cdots, 1)$$
+
+    当逻辑门为异或门，且输入最小项时，逻辑灯终态向量元素中只有一个 1。
+
+    $$\mathbf{l}_1 = (0, 0, \cdots, 0, 1, 0, \cdots, 0)$$
+
+!!! example
+    !!! question
+        将该电路使用最小项之和的形式表示：
+
+        @import "images/3/1/4/and_example_4.png"
+
+    由图可得逻辑灯初态向量为 $\mathbf{l}_0 = (0, 1)$，逻辑门为与门，输入为最小项时输出逻辑灯全亮，所以逻辑灯终态向量为 $\mathbf{l}_1 = (1, 1)$，接线矩阵为 $\mathbf{W} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$。
+    
+    设输入最小项向量为 $\mathbf{s} = (a, b, c)$，则
+
+    $$\mathbf{W}\, \mathbf{s}^{\mathrm{T}} + \mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}$$
+
+    带入可得
+
+    $$\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}\, \begin{pmatrix} a \\ b \\ c \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+
+    化简得
+
+    $$\left\{\begin{aligned}a + b = 1 \\ b + c = 0\end{aligned}\right.$$
+
+    当 $a = 0$ 时，$b = 1$，$c = 1$；
+
+    当 $a = 1$ 时，$b = 0$，$c = 0$。
+
+    综上，该电路有两个最小项，分别是 $011$ 和 $100$。

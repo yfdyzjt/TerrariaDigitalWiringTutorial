@@ -267,9 +267,9 @@ $$ (10010)_{2} = 1 \times 2 ^ 4 + 0 \times 2 ^ 3 + 0 \times 2 ^ 2 + 1 \times 2 ^
     对于矩阵，使用粗体大写字母表示；
 
     !!! example
-        $$\mathbf{X} = \begin{pmatrix} x_{11} & x_{12} & x_{13} \\ x_{21} & x_{22} & x_{23} \end{pmatrix}$$
+        $$\mathbf{X} = \begin{bmatrix} x_{11} & x_{12} & x_{13} \\ x_{21} & x_{22} & x_{23} \end{bmatrix}$$
 
-        $$\mathbf{Y} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}$$
+        $$\mathbf{Y} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix}$$
 
 ##### 逻辑函数
 
