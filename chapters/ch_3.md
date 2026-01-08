@@ -859,9 +859,9 @@ $$\mathbf{w} = (w_1, \cdots, w_n)$$
 $$\mathbf{s} = (s_1, \cdots, s_n)$$
 
 !!! tip
-    $\mathbf{s}$ 和 $\mathbf{w}$ 的维度相同，都是 $n$。
+    $\mathbf{s}$ 和 $\mathbf{w}$ 的维度相同，都是 $n$。标量、向量、矩阵进行乘法和加法运算时，要求对应维度相同。
 
-则该普通灯终态表达式可以写为：
+则该普通灯在输入一个向量后的终态表达式为：
 
 $$\mathbf{w}\, \mathbf{s}^{\mathrm{T}} + l_0 = l_1$$
 
@@ -901,7 +901,7 @@ $$l_{1j} = \mathbf{w}_j\,\mathbf{s}^{\mathrm{T}} + l_{0j}$$
 
 设电线连接矩阵为 $\mathbf{W}$
 
-$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{bmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{bmatrix}$$
+$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix}$$
 
 设电源状态向量为 $\mathbf{s}$
 
@@ -915,13 +915,13 @@ $$\mathbf{l}_0 = (l_{01}, \cdots, l_{0m})$$
 
 $$\mathbf{l}_1 = (l_{11}, \cdots, l_{1m})$$
 
-则该全普通门上普通灯终态表达式可以写为
+则多个普通灯在输入一个向量后的终态表达式为
 
 $$\mathbf{W}\, \mathbf{s}^{\mathrm{T}} + \mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}$$
 
 既：
 
-$$\begin{bmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{bmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n\end{pmatrix} + \begin{pmatrix} l_{01} \\ l_{02} \\ \vdots \\ l_{0m} \end{pmatrix} = \begin{pmatrix} l_{11} \\ l_{12} \\ \vdots \\ l_{1m} \end{pmatrix}$$
+$$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n\end{pmatrix} + \begin{pmatrix} l_{01} \\ l_{02} \\ \vdots \\ l_{0m} \end{pmatrix} = \begin{pmatrix} l_{11} \\ l_{12} \\ \vdots \\ l_{1m} \end{pmatrix}$$
 
 !!! example
     !!! question
@@ -979,3 +979,57 @@ $$\begin{bmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
     当 $a = 1$ 时，$b = 0$，$c = 0$。
 
     综上，该电路有两个最小项，分别是 $011$ 和 $100$。
+
+设有 $p$ 个输入向量。其中第 $k$ 个输入向量为 $\mathbf{s}_{k}$，对应的逻辑灯初态向量为 $\mathbf{l}_{0k}$，逻辑灯终态向量为 $\mathbf{l}_{1k}$。
+
+同理，当有多个输入向量时，我们也可以将它们合并为矩阵。
+
+设电源状态向量为 $\mathbf{S}$
+
+$$\mathbf{S} = \begin{pmatrix} \mathbf{s}_1 \\ \mathbf{s}_2 \\ \vdots \\ \mathbf{s}_p \end{pmatrix} = \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}$$
+
+设电线连接矩阵为 $\mathbf{W}$
+
+$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix}$$
+
+设逻辑灯初态矩阵为 $\mathbf{L}_0$
+
+$$\mathbf{L}_0 = \begin{pmatrix}\mathbf{l}_{01}\\\mathbf{l}_{02}\\\vdots\\\mathbf{l}_{0p}\end{pmatrix} = \begin{pmatrix} l_{011} & l_{012} & \cdots & l_{01m} \\ l_{021} & l_{022} & \cdots & l_{02m} \\ \vdots & \vdots & & \vdots \\ l_{0p1} & l_{0p2} & \cdots & l_{0pm} \end{pmatrix}$$
+
+设逻辑灯终态矩阵为 $\mathbf{L}_1$
+
+$$\mathbf{L}_1 = \begin{pmatrix}\mathbf{l}_{11}\\\mathbf{l}_{12}\\\vdots\\\mathbf{l}_{1p}\end{pmatrix} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
+
+则多个普通灯在输入多个向量后的终态表达式为
+
+$$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}$$
+
+既
+
+$$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix} \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}^{\mathrm{T}} \\ \ \\ + \begin{pmatrix} l_{011} & l_{012} & \cdots & l_{01m} \\ l_{021} & l_{022} & \cdots & l_{02m} \\ \vdots & \vdots & & \vdots \\ l_{0p1} & l_{0p2} & \cdots & l_{0pm} \end{pmatrix}^{\mathrm{T}} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}^{\mathrm{T}}$$
+
+
+
+
+
+
+
+
+
+
+
+!!! example
+    !!! question
+        对于逻辑函数 $f(a, b, c)$，当且仅当 $a, b, c = 1, 0, 0$ 或 $0, 1, 1$ 时取值为 1；其余情况取值为 0，求函数 $f$ 的单与门表示。
+
+    由题可得最小项矩阵为 $\mathbf{S} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}$，逻辑门为与门，输入为最小项时输出逻辑灯全亮，所以逻辑门终态矩阵为 $\mathbf{L}_1 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$。
+    
+    设逻辑灯初态矩阵为 $\mathbf{L}_0$，由于两种最小项输入时初始逻辑灯状态一样，所以设 $\mathbf{L}_0 = \begin{pmatrix} l_{11} & l_{12} \\ l_{11} & l_{12} \end{pmatrix}$，接线矩阵为 $\mathbf{W} = \begin{pmatrix} w_{11} & w_{12} & w_{13} \\ w_{21} & w_{22} & w_{23} \end{pmatrix}$ 则
+
+    $$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}$$
+    
+    带入可得
+
+    $$\begin{pmatrix} w_{11} & w_{12} & w_{13} \\ w_{21} & w_{22} & w_{23} \end{pmatrix}\, \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} l_{11} & l_{11} \\ l_{12} & l_{12} \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+
+    化简得
