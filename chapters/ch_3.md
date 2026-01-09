@@ -680,7 +680,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
         | 1 | 1 | 0 | $a \cdot b \cdot \lnot c$ | $m_6$ |
         | 1 | 1 | 1 | $a \cdot b \cdot c$ | $m_7$ |
 
-    最小项之和可以被写为形如 $m_i + m_j + \cdots + m_k$ 的形式。
+    最小项之和可以被写为形如 $m_i + m_j + \cdots + m_k = \sum_{}^{} m(i, j, \cdots, k)$ 的形式。
 
     !!! example
         对于下表所示的三输入逻辑函数：
@@ -703,7 +703,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
         也可以简写为：
 
-        $$m_3 + m_5 + m_6 + m_7$$
+        $$m_3 + m_5 + m_6 + m_7 = \sum_{}^{} m(3, 5, 6, 7)$$
 
 通常我们已知逻辑函数，需要找到满足逻辑函数的电路表示。此时我们需要先将逻辑函数写成积之和，也就是最小项之和的形式，然后将积之和转换为和之积，以满足与门或异或门的格式。但利用运算律和因数分解进行转换都是比较困难的。
 
@@ -821,7 +821,7 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
     !!! example
         对于秩为 3 的一组互不相同的非平凡串，如果用字母 $a$、$b$、$c$ 表示，最多可以写出：$a$、$b$、$c$、$a + b$、$a + c$、$b + c$、$a + b + c$ 七个，也就是三个字母所有可能组成的串去掉 $0$ 剩下的情况。其中任选两个串，其秩至少为 $\lceil\log_2 (2+1)\rceil = 2$，任选三个串，其秩至少为 $\lceil\log_2 (3+1)\rceil = 2$。
 
-##### 逻辑门
+##### 单输入单普通灯方程
 
 !!! example
     !!! question
@@ -892,6 +892,8 @@ $$w_1 s_1 + w_2 s_2 + \cdots + w_n s_n + l_0 = l_1$$
     $\mathbf{w}_3 = (1, 0, 0);\ \mathbf{s}_1 = (0, 1, 1);\ l_{03} = 1;$
 
     $l_{13} = \mathbf{w}_3\, \mathbf{s}_3^{\mathrm{T}} + l_{03} = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + 1 = 0 + 1 = 1$
+
+##### 单输入多普通灯方程
 
 设全普通门上有 $m$ 个普通灯，有 $n$ 个输入电源。其中第 $j$ 个逻辑灯初始状态为 $l_{j0}$，电线连接为 $\mathbf{w}_j$，初态 $l_{0j}$，终态 $l_{1j}$，则其表达式为：
 
@@ -980,11 +982,13 @@ $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
 
     综上，该电路有两个最小项，分别是 $011$ 和 $100$。
 
+##### 多输入多普通灯方程
+
 设有 $p$ 个输入向量。其中第 $k$ 个输入向量为 $\mathbf{s}_{k}$，对应的逻辑灯初态向量为 $\mathbf{l}_{0k}$，逻辑灯终态向量为 $\mathbf{l}_{1k}$。
 
 同理，当有多个输入向量时，我们也可以将它们合并为矩阵。
 
-设电源状态向量为 $\mathbf{S}$
+设电源状态矩阵为 $\mathbf{S}$
 
 $$\mathbf{S} = \begin{pmatrix} \mathbf{s}_1 \\ \mathbf{s}_2 \\ \vdots \\ \mathbf{s}_p \end{pmatrix} = \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}$$
 
@@ -1008,28 +1012,29 @@ $$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_
 
 $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix} \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}^{\mathrm{T}} \\ \ \\ + \begin{pmatrix} l_{011} & l_{012} & \cdots & l_{01m} \\ l_{021} & l_{022} & \cdots & l_{02m} \\ \vdots & \vdots & & \vdots \\ l_{0p1} & l_{0p2} & \cdots & l_{0pm} \end{pmatrix}^{\mathrm{T}} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}^{\mathrm{T}}$$
 
+##### 全逻辑门方程
 
+对于多个逻辑灯在输入多个向量后的终态表达式
 
+$$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}$$
 
+将两边取转置得
 
+$$\mathbf{S}\, \mathbf{W}^{\mathrm{T}} + \mathbf{L}_0 = \mathbf{L}_1$$
 
+对于同一全逻辑门，初始逻辑灯相同，故令
 
+$$\mathbf{S}_1 = (\mathbf{S} | \mathbf{1}) = \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ \vdots & \vdots & & \vdots & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} & 1 \end{pmatrix}$$
 
+$$\mathbf{W}_1 = (\mathbf{W} | \mathbf{l}_0^{\mathrm{T}}) = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ \vdots & \vdots & & \vdots & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} \end{pmatrix}$$
 
+$$\mathbf{L}_1 = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
 
+则上式可写为
 
-!!! example
-    !!! question
-        对于逻辑函数 $f(a, b, c)$，当且仅当 $a, b, c = 1, 0, 0$ 或 $0, 1, 1$ 时取值为 1；其余情况取值为 0，求函数 $f$ 的单与门表示。
+$$\mathbf{S}_1\, \mathbf{W}_1^{\mathrm{T}} = \mathbf{L}_1$$
 
-    由题可得最小项矩阵为 $\mathbf{S} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}$，逻辑门为与门，输入为最小项时输出逻辑灯全亮，所以逻辑门终态矩阵为 $\mathbf{L}_1 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$。
-    
-    设逻辑灯初态矩阵为 $\mathbf{L}_0$，由于两种最小项输入时初始逻辑灯状态一样，所以设 $\mathbf{L}_0 = \begin{pmatrix} l_{11} & l_{12} \\ l_{11} & l_{12} \end{pmatrix}$，接线矩阵为 $\mathbf{W} = \begin{pmatrix} w_{11} & w_{12} & w_{13} \\ w_{21} & w_{22} & w_{23} \end{pmatrix}$ 则
+在已知最小项求解电线连接和逻辑灯初态时，最小项矩阵 $\mathbf{S}_1$ 和逻辑灯终态矩阵 $\mathbf{L}_1$ 已知，接线与逻辑灯初态矩阵 $\mathbf{W}_1$ 未知，求解该矩阵方程即可得到电线连接和逻辑灯初态。
 
-    $$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}$$
-    
-    带入可得
+##### 解的存在性
 
-    $$\begin{pmatrix} w_{11} & w_{12} & w_{13} \\ w_{21} & w_{22} & w_{23} \end{pmatrix}\, \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} l_{11} & l_{11} \\ l_{12} & l_{12} \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
-
-    化简得
