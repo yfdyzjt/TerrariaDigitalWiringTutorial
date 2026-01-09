@@ -984,7 +984,7 @@ $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
 
 ##### 多输入多普通灯方程
 
-设有 $p$ 个输入向量。其中第 $k$ 个输入向量为 $\mathbf{s}_{k}$，对应的逻辑灯初态向量为 $\mathbf{l}_{0k}$，逻辑灯终态向量为 $\mathbf{l}_{1k}$。
+设全普通门上有 $m$ 个普通灯，有 $n$ 个输入电源，有 $p$ 个输入向量。其中第 $k$ 个输入向量为 $\mathbf{s}_{k}$，对应的逻辑灯初态向量为 $\mathbf{l}_{0k}$，逻辑灯终态向量为 $\mathbf{l}_{1k}$。
 
 同理，当有多个输入向量时，我们也可以将它们合并为矩阵。
 
@@ -1033,6 +1033,10 @@ $$\mathbf{L}_1 = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121}
 则上式可写为
 
 $$\mathbf{S}_1\, \mathbf{W}_1^{\mathrm{T}} = \mathbf{L}_1$$
+
+既
+
+$$\begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ \vdots & \vdots & & \vdots & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} & 1 \end{pmatrix} \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ \vdots & \vdots & & \vdots & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} \end{pmatrix}^{\mathrm{T}} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
 
 在已知最小项求解电线连接和逻辑灯初态时，最小项矩阵 $\mathbf{S}_1$ 和逻辑灯终态矩阵 $\mathbf{L}_1$ 已知，接线与逻辑灯初态矩阵 $\mathbf{W}_1$ 未知，求解该矩阵方程即可得到电线连接和逻辑灯初态。
 
