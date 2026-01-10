@@ -57,7 +57,15 @@ $$y = \mathrm{OneHot}(a, b)$$
 !!! info
     与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：
 
-    $$a_1 \land a_2 \land \cdots \land a_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$
+    a_1 \land a_2 \land \cdots \land a_n = 
+    \left\{
+        \begin{array}{ll}
+            1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 时} \\
+            0 & \textrm{其他情况}
+        \end{array}
+    \right.
+    $$
 
     !!! example
         @import "images/3/1/2/and_all_one.png"
@@ -66,7 +74,15 @@ $$y = \mathrm{OneHot}(a, b)$$
 
     如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出 1，否则输出 0：
 
-    $$\lnot a_1 \land \lnot a_2 \land \cdots \land \lnot a_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$
+    \lnot a_1 \land \lnot a_2 \land \cdots \land \lnot a_n = 
+    \left\{
+        \begin{array}{ll}
+            1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 0 \textrm{ 时} \\
+            0 & \textrm{其他情况}
+        \end{array}
+    \right.
+    $$
 
     !!! example
         @import "images/3/1/2/and_all_zero.png"
@@ -75,7 +91,16 @@ $$y = \mathrm{OneHot}(a, b)$$
 
     若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为 0”时输出 1，其余情况输出 0：
 
-    $$a_1 \land a_2 \land \cdots \land a_m \land \lnot b_1 \land \lnot b_2 \land \cdots \land \lnot b_n = \left\{\begin{array}{ll}1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 且} \\ & b_1 = b_2 = \cdots = b_n = 0 \textrm{ 时} \\0&\textrm{其他情况}\end{array}\right.$$
+    $$
+    a_1 \land a_2 \land \cdots \land a_m \land \lnot b_1 \land \lnot b_2 \land \cdots \land \lnot b_n = 
+    \left\{
+        \begin{array}{ll}
+            1 & \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 且} \\ 
+                & b_1 = b_2 = \cdots = b_n = 0 \textrm{ 时} \\
+            0 & \textrm{其他情况}
+        \end{array}
+    \right.
+    $$
 
     !!! example
         @import "images/3/1/2/and_half_one.png"
@@ -443,7 +468,22 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
     则全与门代数式如下：
 
-    $$\mathrm{FullAndGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) = \prod_{j=1}^{n} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
+    $$
+    \mathrm{FullAndGate} 
+    \Big(
+        \{s_{ji}\}_{
+            \substack{
+                1\le j\le n \\
+                1\le i\le k_j
+            }
+        }; 
+        \{l_{0j}\}_{j=1}^{n}
+    \Big) = 
+    \prod_{j=1}^{n} 
+    \left(
+        \sum_{i=1}^{k_j} s_{ji} + l_{0j} 
+    \right)
+    $$
 
 !!! example
     !!! question
@@ -464,7 +504,13 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! tip
     既代数式可以写成如下形式时，对应逻辑可以只用一个与门实现。
 
-    $$f = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right) \quad \text{or} \quad f+1 = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right)$$
+    $$
+    f = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right) 
+    \quad 
+    \text{or} 
+    \quad 
+    f + 1 = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right)
+    $$
 
 能只使用一个逻辑门实现的逻辑被称为 **简单逻辑**。
 
@@ -478,7 +524,15 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
     $$ab + a + b$$
 
     !!! quote
-        $$\begin{array}{lll} a \lor b & = & \lnot (\lnot a \land \lnot b) \\ & = & (a + 1)(b + 1) + 1 \\ & = & ab + a + b + 1 + 1 \\ & = & ab + a + b \end{array}$$
+        $$
+        \begin{array}{lll} 
+            a \lor b 
+            & = & \lnot (\lnot a \land \lnot b) \\ 
+            & = & (a + 1)(b + 1) + 1 \\ 
+            & = & ab + a + b + 1 + 1 \\ 
+            & = & ab + a + b 
+        \end{array}
+        $$
 
     或运算代数式可以使用因式分解将其写成因式里只含加法的形式：
 
@@ -529,7 +583,19 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
     转换为代数式：
 
-    $$\begin{array}{lll} \mathrm{OneHot}(a, b, c) & = & (a + 1)(b + 1)c + (a + 1)b(c + 1) + a(b + 1)(c + 1) \\ & = & (ab + a + b + 1)c + \\ & & (ac + a + c + 1)b + \\ & & (bc + b + c + 1)a \\ & = & abc + ac + bc + c + \\ & & abc + ab + bc + b + \\ & & abc + ab + ac + a \\ & = & abc + a + b + c\end{array}$$
+    $$
+    \begin{array}{lll} 
+        \mathrm{OneHot}(a, b, c) 
+        & = & (a + 1)(b + 1)c + (a + 1)b(c + 1) + a(b + 1)(c + 1) \\ 
+        & = & (ab + a + b + 1)c + \\ 
+        & & (ac + a + c + 1)b + \\ 
+        & & (bc + b + c + 1)a \\ 
+        & = & abc + ac + bc + c + \\ 
+        & & abc + ab + bc + b + \\ 
+        & & abc + ab + ac + a \\ 
+        & = & abc + a + b + c
+    \end{array}
+    $$
 
     !!! tip
         这里利用了推论 $a + a = 0$，出现奇数次的项被保留，偶数次的项被消掉。
@@ -544,7 +610,16 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 !!! quote
     由上述结论推广可得：
 
-    $$\mathrm{XorGate}(l_1,\cdots,l_n) = \sum_{\substack{i \subseteq \{1,\cdots,n\} \\ |i| \equiv 1 \pmod{2}}} \; \prod_{i \in i} l_i$$
+    $$
+    \mathrm{XorGate}(l_1,\cdots,l_n) = 
+    \sum_{
+        \substack{
+            i \subseteq \{1,\cdots,n\} \\ 
+            |i| \equiv 1 \pmod{2}
+        }
+    } \; 
+    \prod_{i \in i} l_i
+    $$
 
     $n$ 灯输入异或门代数式。
 
@@ -557,12 +632,54 @@ $$a \cdot (b + c) = a \cdot b + a \cdot c$$
 
     则全异或门代数式如下：
 
-    $$\mathrm{FullXorGate} \Big(\{s_{ji}\}_{\substack{1\le j\le n\\1\le i\le k_j}}; \{l_{0j}\}_{j=1}^{n}\Big) \\ =  \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{j \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
+    $$
+    \mathrm{FullXorGate} 
+    \Big(
+        \{s_{ji}\}_{\substack{
+                1\le j\le n \\ 
+                1\le i\le k_j
+            }
+        }; 
+        \{l_{0j}\}_{j=1}^{n}
+    \Big) \\ = 
+    \sum_{
+        \substack{
+                I \subseteq \{1, \cdots, n\} \\ 
+                |I| \equiv 1 \pmod{2}
+            }
+        } \; 
+    \prod_{j \in I} 
+    \left(
+        \sum_{i=1}^{k_j} s_{ji} + l_{0j} 
+    \right)
+    $$
 
 !!! tip
     同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。
 
-    $$f = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right) \\ \text{or} \\ f+1 = \sum_{\substack{I \subseteq \{1,\cdots,n\} \\ |I| \equiv 1 \pmod{2}}} \; \prod_{i \in I} \left(\sum_{i=1}^{k_j} s_{ji} + l_{0j} \right)$$
+    $$
+    f = \sum_{
+        \substack{
+            I \subseteq \{1,\cdots,n\} \\ 
+            |I| \equiv 1 \pmod{2}
+        }
+    } \; 
+    \prod_{i \in I} 
+    \left(
+        \sum_{i=1}^{k_j} s_{ji} + l_{0j} 
+    \right) \\ 
+    \text{or} \\ 
+    f + 1 = \sum_{
+        \substack{
+            I \subseteq \{1,\cdots,n\} \\ 
+            |I| \equiv 1 \pmod{2}
+        }
+    } \; 
+    \prod_{i \in I} 
+    \left(
+        \sum_{i=1}^{k_j} s_{ji} + l_{0j} 
+    \right)
+    $$
 
 !!! example
     !!! question
@@ -867,7 +984,14 @@ $$\mathbf{w}\, \mathbf{s}^{\mathrm{T}} + l_0 = l_1$$
 
 既：
 
-$$\begin{pmatrix} w_1 & w_2 & \cdots & w_n \end{pmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n \end{pmatrix} + l_0 = l_1 $$
+$$
+\begin{pmatrix} 
+    w_1 & w_2 & \cdots & w_n 
+\end{pmatrix} 
+\begin{pmatrix} 
+    s_1 \\ s_2 \\ \vdots \\ s_n 
+\end{pmatrix} + l_0 = l_1
+$$
 
 $$w_1 s_1 + w_2 s_2 + \cdots + w_n s_n + l_0 = l_1$$
 
@@ -883,15 +1007,43 @@ $$w_1 s_1 + w_2 s_2 + \cdots + w_n s_n + l_0 = l_1$$
 
     $\mathbf{w}_1 = (1, 0, 1);\ \mathbf{s}_1 = (1, 1, 0);\ l_{01} = 0;$
 
-    $l_{11} = \mathbf{w}_1\, \mathbf{s}_1^{\mathrm{T}} + l_{01} = \begin{pmatrix} 1 & 0 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} + 0 = 1 + 0 = 1$
+    $
+    l_{11} = 
+    \mathbf{w}_1\, \mathbf{s}_1^{\mathrm{T}} + l_{01} = 
+    \begin{pmatrix} 
+        1 & 0 & 1 
+    \end{pmatrix} 
+    \begin{pmatrix} 
+        1 \\ 1 \\ 0 
+    \end{pmatrix} + 0 = 
+    1 + 0 = 1
+    $
 
     $\mathbf{w}_2 = (0, 1, 1);\ \mathbf{s}_1 = (1, 0, 1);\ l_{02} = 1;$
 
-    $l_{12} = \mathbf{w}_2\, \mathbf{s}_2^{\mathrm{T}} + l_{02} = \begin{pmatrix} 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + 1 = 1 + 1 = 0$
+    $
+    l_{12} = \mathbf{w}_2\, \mathbf{s}_2^{\mathrm{T}} + l_{02} = 
+    \begin{pmatrix} 
+    0 & 1 & 1 
+    \end{pmatrix} 
+    \begin{pmatrix} 
+        1 \\ 0 \\ 1 
+    \end{pmatrix} + 1 = 
+    1 + 1 = 0
+    $
 
     $\mathbf{w}_3 = (1, 0, 0);\ \mathbf{s}_1 = (0, 1, 1);\ l_{03} = 1;$
 
-    $l_{13} = \mathbf{w}_3\, \mathbf{s}_3^{\mathrm{T}} + l_{03} = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + 1 = 0 + 1 = 1$
+    $
+    l_{13} = \mathbf{w}_3\, \mathbf{s}_3^{\mathrm{T}} + l_{03} = 
+    \begin{pmatrix} 
+        1 & 0 & 0 
+    \end{pmatrix} 
+    \begin{pmatrix} 
+        0 \\ 1 \\ 1 
+    \end{pmatrix} + 1 = 
+    0 + 1 = 1
+    $
 
 ##### 单输入多普通灯方程
 
@@ -903,7 +1055,20 @@ $$l_{1j} = \mathbf{w}_j\,\mathbf{s}^{\mathrm{T}} + l_{0j}$$
 
 设电线连接矩阵为 $\mathbf{W}$
 
-$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix}$$
+$$
+\mathbf{W} = 
+\begin{pmatrix}
+    \mathbf{w}_1 \\
+    \mathbf{w}_2 \\
+    \vdots \\ 
+    \mathbf{w}_m
+\end{pmatrix} = 
+\begin{pmatrix} 
+    w_{11} & w_{12} & \cdots & w_{1n} \\ 
+    w_{21} & w_{22} & \cdots & w_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    w_{m1} & w_{m2} & \cdots & w_{mn} 
+\end{pmatrix}$$
 
 设电源状态向量为 $\mathbf{s}$
 
@@ -923,7 +1088,23 @@ $$\mathbf{W}\, \mathbf{s}^{\mathrm{T}} + \mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_
 
 既：
 
-$$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix} \begin{pmatrix} s_1 \\ s_2 \\ \vdots \\ s_n\end{pmatrix} + \begin{pmatrix} l_{01} \\ l_{02} \\ \vdots \\ l_{0m} \end{pmatrix} = \begin{pmatrix} l_{11} \\ l_{12} \\ \vdots \\ l_{1m} \end{pmatrix}$$
+$$
+\begin{pmatrix} 
+    w_{11} & w_{12} & \cdots & w_{1n} \\ 
+    w_{21} & w_{22} & \cdots & w_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    w_{m1} & w_{m2} & \cdots & w_{mn} 
+\end{pmatrix} 
+\begin{pmatrix} 
+    s_1 \\ s_2 \\ \vdots \\ s_n
+\end{pmatrix} + 
+\begin{pmatrix} 
+    l_{01} \\ l_{02} \\ \vdots \\ l_{0m} 
+\end{pmatrix} = 
+\begin{pmatrix} 
+    l_{11} \\ l_{12} \\ \vdots \\ l_{1m} 
+\end{pmatrix}
+$$
 
 !!! example
     !!! question
@@ -935,13 +1116,73 @@ $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
 
         @import "images/3/1/4/and_example_3_2.png"
 
-    $\mathbf{W}_1 = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix};\ \mathbf{s}_1 = (0, 1, 1);\ \mathbf{l}_{01} = (1, 1);$
+    $
+    \mathbf{W}_1 = 
+    \begin{pmatrix} 
+        1 & 1 & 0 \\ 
+        0 & 1 & 1 
+    \end{pmatrix};\ 
+    \mathbf{s}_1 = (0, 1, 1);\ 
+    \mathbf{l}_{01} = (1, 1);
+    $
 
-    $\mathbf{l}_{11} = \mathbf{W}_1\, \mathbf{s}_1^{\mathrm{T}} + \mathbf{l}_{01}^{\mathrm{T}} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}\, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
+    $
+    \mathbf{l}_{11} = 
+    \mathbf{W}_1\, \mathbf{s}_1^{\mathrm{T}} + \mathbf{l}_{01}^{\mathrm{T}} = 
+    \begin{pmatrix} 
+        1 & 1 & 0 \\ 
+        0 & 1 & 1 
+    \end{pmatrix}\, 
+    \begin{pmatrix} 
+        0 \\ 1 \\ 1 
+    \end{pmatrix} + 
+    \begin{pmatrix} 
+        1 \\ 1 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+        1 \\ 0 
+    \end{pmatrix} + 
+    \begin{pmatrix} 
+        1 \\ 1 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+        0 \\ 1 
+    \end{pmatrix}
+    $
 
-    $\mathbf{W}_2 = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix};\ \mathbf{s}_1 = (1, 0, 1);\ \mathbf{l}_{01} = (0, 1);$
+    $
+    \mathbf{W}_2 = 
+    \begin{pmatrix} 
+        1 & 1 & 0 \\ 
+        0 & 0 & 1 
+    \end{pmatrix};\ 
+    \mathbf{s}_1 = (1, 0, 1);\ 
+    \mathbf{l}_{01} = (0, 1);
+    $
 
-    $\mathbf{l}_{12} = \mathbf{W}_2\, \mathbf{s}_2^{\mathrm{T}} + \mathbf{l}_{02}^{\mathrm{T}} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\, \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+    $
+    \mathbf{l}_{12} = 
+    \mathbf{W}_2\, \mathbf{s}_2^{\mathrm{T}} + \mathbf{l}_{02}^{\mathrm{T}} = 
+    \begin{pmatrix} 
+        1 & 1 & 0 \\ 
+        0 & 0 & 1 
+    \end{pmatrix}\, 
+    \begin{pmatrix} 
+        1 \\ 0 \\ 1 
+    \end{pmatrix} + 
+    \begin{pmatrix} 
+        0 \\ 1 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+        1 \\ 1 
+    \end{pmatrix} + 
+    \begin{pmatrix} 
+        0 \\ 1 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+        1 \\ 0 
+    \end{pmatrix}
+    $
 
 与门在其上全部普通灯点亮时点亮；异或门在其上只有一个普通灯点亮时点亮。也就是说，与门在输入最小项时，其上逻辑灯终态向量全部元素为 1；异或门在输入最小项时，其上逻辑灯终态向量中有且仅有一个元素是 1。而对于非最小项的输入，逻辑灯终态是其余情况，不会满足逻辑门点亮条件，无需关注。
 
@@ -970,11 +1211,32 @@ $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
 
     带入可得
 
-    $$\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}\, \begin{pmatrix} a \\ b \\ c \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+    $$
+    \begin{pmatrix} 
+        1 & 1 & 0 \\ 
+        0 & 1 & 1 
+    \end{pmatrix}\, 
+    \begin{pmatrix} 
+        a \\ b \\ c 
+    \end{pmatrix} + 
+    \begin{pmatrix} 
+        0 \\ 1 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+        1 \\ 1 
+    \end{pmatrix}
+    $$
 
     化简得
 
-    $$\left\{\begin{aligned}a + b = 1 \\ b + c = 0\end{aligned}\right.$$
+    $$
+    \left\{
+        \begin{aligned}
+            a + b = 1 \\ 
+            b + c = 0
+        \end{aligned}
+    \right.
+    $$
 
     当 $a = 0$ 时，$b = 1$，$c = 1$；
 
@@ -990,19 +1252,75 @@ $$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots 
 
 设电源状态矩阵为 $\mathbf{S}$
 
-$$\mathbf{S} = \begin{pmatrix} \mathbf{s}_1 \\ \mathbf{s}_2 \\ \vdots \\ \mathbf{s}_p \end{pmatrix} = \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}$$
+$$
+\mathbf{S} = 
+\begin{pmatrix} 
+    \mathbf{s}_1 \\ 
+    \mathbf{s}_2 \\ 
+    \vdots \\ 
+    \mathbf{s}_p 
+\end{pmatrix} = 
+\begin{pmatrix} 
+    s_{11} & s_{12} & \cdots & s_{1n} \\ 
+    s_{21} & s_{22} & \cdots & s_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    s_{p1} & s_{p2} & \cdots & s_{pn} 
+\end{pmatrix}
+$$
 
 设电线连接矩阵为 $\mathbf{W}$
 
-$$\mathbf{W} = \begin{pmatrix}\mathbf{w}_1\\\mathbf{w}_2\\\vdots\\\mathbf{w}_m\end{pmatrix} = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix}$$
+$$
+\mathbf{W} = 
+\begin{pmatrix}
+    \mathbf{w}_1 \\
+    \mathbf{w}_2 \\
+    \vdots \\
+    \mathbf{w}_m
+\end{pmatrix} = 
+\begin{pmatrix} 
+    w_{11} & w_{12} & \cdots & w_{1n} \\
+    w_{21} & w_{22} & \cdots & w_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    w_{m1} & w_{m2} & \cdots & w_{mn} 
+\end{pmatrix}
+$$
 
 设逻辑灯初态矩阵为 $\mathbf{L}_0$
 
-$$\mathbf{L}_0 = \begin{pmatrix}\mathbf{l}_{01}\\\mathbf{l}_{02}\\\vdots\\\mathbf{l}_{0p}\end{pmatrix} = \begin{pmatrix} l_{011} & l_{012} & \cdots & l_{01m} \\ l_{021} & l_{022} & \cdots & l_{02m} \\ \vdots & \vdots & & \vdots \\ l_{0p1} & l_{0p2} & \cdots & l_{0pm} \end{pmatrix}$$
+$$
+\mathbf{L}_0 = 
+\begin{pmatrix}
+    \mathbf{l}_{01} \\
+    \mathbf{l}_{02} \\
+    \vdots \\
+    \mathbf{l}_{0p}
+\end{pmatrix} = 
+\begin{pmatrix} 
+    l_{011} & l_{012} & \cdots & l_{01m} \\ 
+    l_{021} & l_{022} & \cdots & l_{02m} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    l_{0p1} & l_{0p2} & \cdots & l_{0pm} 
+\end{pmatrix}
+$$
 
 设逻辑灯终态矩阵为 $\mathbf{L}_1$
 
-$$\mathbf{L}_1 = \begin{pmatrix}\mathbf{l}_{11}\\\mathbf{l}_{12}\\\vdots\\\mathbf{l}_{1p}\end{pmatrix} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
+$$
+\mathbf{L}_1 = 
+\begin{pmatrix}
+    \mathbf{l}_{11} \\
+    \mathbf{l}_{12} \\
+    \vdots \\ 
+    \mathbf{l}_{1p}
+\end{pmatrix} = 
+\begin{pmatrix} 
+    l_{111} & l_{112} & \cdots & l_{11m} \\ 
+    l_{121} & l_{122} & \cdots & l_{12m} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    l_{1p1} & l_{1p2} & \cdots & l_{1pm} 
+\end{pmatrix}
+$$
 
 则多个普通灯在输入多个向量后的终态表达式为
 
@@ -1010,7 +1328,32 @@ $$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_
 
 既
 
-$$\begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} \\ w_{21} & w_{22} & \cdots & w_{2n} \\ \vdots & \vdots & & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} \end{pmatrix} \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} \\ s_{21} & s_{22} & \cdots & s_{2n} \\ \vdots & \vdots & & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} \end{pmatrix}^{\mathrm{T}} \\ \ \\ + \begin{pmatrix} l_{011} & l_{012} & \cdots & l_{01m} \\ l_{021} & l_{022} & \cdots & l_{02m} \\ \vdots & \vdots & & \vdots \\ l_{0p1} & l_{0p2} & \cdots & l_{0pm} \end{pmatrix}^{\mathrm{T}} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}^{\mathrm{T}}$$
+$$
+\begin{pmatrix} 
+    w_{11} & w_{12} & \cdots & w_{1n} \\ 
+    w_{21} & w_{22} & \cdots & w_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    w_{m1} & w_{m2} & \cdots & w_{mn} 
+\end{pmatrix} 
+\begin{pmatrix} 
+    s_{11} & s_{12} & \cdots & s_{1n} \\ 
+    s_{21} & s_{22} & \cdots & s_{2n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    s_{p1} & s_{p2} & \cdots & s_{pn} 
+\end{pmatrix}^{\mathrm{T}} + \\ \ \\ 
+\begin{pmatrix} 
+    l_{011} & l_{012} & \cdots & l_{01m} \\ 
+    l_{021} & l_{022} & \cdots & l_{02m} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    l_{0p1} & l_{0p2} & \cdots & l_{0pm} 
+\end{pmatrix}^{\mathrm{T}} = 
+\begin{pmatrix} 
+    l_{111} & l_{112} & \cdots & l_{11m} \\ 
+    l_{121} & l_{122} & \cdots & l_{12m} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    l_{1p1} & l_{1p2} & \cdots & l_{1pm} 
+\end{pmatrix}^{\mathrm{T}}
+$$
 
 ##### 全逻辑门方程
 
@@ -1022,13 +1365,39 @@ $$\mathbf{W}\, \mathbf{S}^{\mathrm{T}} + \mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_
 
 $$\mathbf{S}\, \mathbf{W}^{\mathrm{T}} + \mathbf{L}_0 = \mathbf{L}_1$$
 
-对于同一全逻辑门，初始逻辑灯相同，故令
+对于同一全逻辑门，初始逻辑灯相同，可令
 
-$$\mathbf{S}_1 = (\mathbf{S} | \mathbf{1}) = \begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ \vdots & \vdots & & \vdots & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} & 1 \end{pmatrix}$$
+$$
+    \mathbf{S}_1 = 
+    (\mathbf{S} | \mathbf{1}) = 
+    \begin{pmatrix} 
+        s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ 
+        s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ 
+        \vdots & \vdots & & \vdots & \vdots \\ 
+        s_{p1} & s_{p2} & \cdots & s_{pn} & 1 
+    \end{pmatrix}
+$$
 
-$$\mathbf{W}_1 = (\mathbf{W} | \mathbf{l}_0^{\mathrm{T}}) = \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ \vdots & \vdots & & \vdots & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} \end{pmatrix}$$
+$$
+    \mathbf{W}_1 = 
+    (\mathbf{W} | \mathbf{l}_0^{\mathrm{T}}) = 
+    \begin{pmatrix} 
+        w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ 
+        w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ 
+        \vdots & \vdots & & \vdots & \vdots \\ 
+        w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} 
+    \end{pmatrix}
+$$
 
-$$\mathbf{L}_1 = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
+$$
+    \mathbf{L}_1 = 
+    \begin{pmatrix} 
+        l_{111} & l_{112} & \cdots & l_{11m} \\ 
+        l_{121} & l_{122} & \cdots & l_{12m} \\ 
+        \vdots & \vdots & & \vdots \\ 
+        l_{1p1} & l_{1p2} & \cdots & l_{1pm} 
+    \end{pmatrix}
+$$
 
 则上式可写为
 
@@ -1036,9 +1405,108 @@ $$\mathbf{S}_1\, \mathbf{W}_1^{\mathrm{T}} = \mathbf{L}_1$$
 
 既
 
-$$\begin{pmatrix} s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ \vdots & \vdots & & \vdots & \vdots \\ s_{p1} & s_{p2} & \cdots & s_{pn} & 1 \end{pmatrix} \begin{pmatrix} w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ \vdots & \vdots & & \vdots & \vdots \\ w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} \end{pmatrix}^{\mathrm{T}} = \begin{pmatrix} l_{111} & l_{112} & \cdots & l_{11m} \\ l_{121} & l_{122} & \cdots & l_{12m} \\ \vdots & \vdots & & \vdots \\ l_{1p1} & l_{1p2} & \cdots & l_{1pm} \end{pmatrix}$$
+$$
+\begin{pmatrix} 
+    s_{11} & s_{12} & \cdots & s_{1n} & 1 \\ 
+    s_{21} & s_{22} & \cdots & s_{2n} & 1 \\ 
+    \vdots & \vdots & & \vdots & \vdots \\ 
+    s_{p1} & s_{p2} & \cdots & s_{pn} & 1 
+\end{pmatrix} 
+\begin{pmatrix} 
+    w_{11} & w_{12} & \cdots & w_{1n} & l_{01} \\ 
+    w_{21} & w_{22} & \cdots & w_{2n} & l_{02} \\ 
+    \vdots & \vdots & & \vdots & \vdots \\ 
+    w_{m1} & w_{m2} & \cdots & w_{mn} & l_{0m} 
+\end{pmatrix}^{\mathrm{T}} = 
+\begin{pmatrix} 
+    l_{111} & l_{112} & \cdots & l_{11m} \\ 
+    l_{121} & l_{122} & \cdots & l_{12m} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    l_{1p1} & l_{1p2} & \cdots & l_{1pm} 
+\end{pmatrix}
+$$
 
 在已知最小项求解电线连接和逻辑灯初态时，最小项矩阵 $\mathbf{S}_1$ 和逻辑灯终态矩阵 $\mathbf{L}_1$ 已知，接线与逻辑灯初态矩阵 $\mathbf{W}_1$ 未知，求解该矩阵方程即可得到电线连接和逻辑灯初态。
 
+##### 矩阵的初等变换
+
+下面两种变换称为矩阵的 **初等行变换**：
+
+* 将矩阵的两行交换；
+* 将矩阵的某行加到另一行上。
+
+记矩阵的第 $i$ 行为 $r_i$，则交换第 $i$ 行和第 $j$ 行被记为 $r_i \leftrightarrow r_j$，将第 $i$ 行加到第 $j$ 行被记为 $r_i + r_j$。
+
+$$
+\begin{pmatrix} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{i1} & a_{i2} & \cdots & a_{in} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{j1} & a_{j2} & \cdots & a_{jn} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{pmatrix} 
+\xrightarrow{r_i \leftrightarrow r_j} 
+\begin{pmatrix} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{j1} & a_{j2} & \cdots & a_{jn} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{i1} & a_{i2} & \cdots & a_{in} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{pmatrix}
+$$
+
+$$
+\begin{pmatrix} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{i1} & a_{i2} & \cdots & a_{in} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{j1} & a_{j2} & \cdots & a_{jn} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{pmatrix} 
+\xrightarrow{r_i + r_j} 
+\begin{pmatrix} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{i1} & a_{i2} & \cdots & a_{in} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{j1} + a_{i1} & a_{j2} + a_{i2} & \cdots & a_{jn} + a_{in} \\ 
+    \vdots & \vdots & & \vdots \\ 
+    a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{pmatrix}
+$$
+
+如果矩阵 $\mathbf{A}$ 可以经过有限次初等变换变成矩阵 $\mathbf{B}$，则称矩阵 $\mathbf{A}$ 与 $\mathbf{B}$ 等价。
+
+当我们只使用初等行变换对矩阵进行变换时，可以得到一种特殊的矩阵，其特点是：
+
+* 矩阵中全部元素为 0 的行都在矩阵的最下面；
+* 每行左起第一个非 0 元素的下方元素都为 0。
+
+这种特殊的矩阵被称为 **行阶梯形矩阵**，将普通矩阵变换为行阶梯形矩阵后，行阶梯形矩阵中的非零行的数量就是该矩阵的秩。
+
+!!! example
+    !!! quote
+        $$
+        \begin{pmatrix}
+            1 & 1 & 0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 1 \\
+            0 & 0 & 0 & 0 & 1 & 1 \\
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 0
+        \end{pmatrix}
+        $$
+
+        行阶梯形矩阵
+
+    我们可以在行阶梯形矩阵中画一条阶梯线让阶梯线下方全部元素为 0，阶梯线中的每个竖线都在每行的首个非零元素的左边，每个横线下方元素都是 0，每个阶梯只有一行，阶梯数就是非零行的行数。
+
 ##### 解的存在性
+
 
